@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: spring-boot-tracker-manager-service
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE}
+  main:
+    banner-mode: #off
+  banner:
+    location: classpath:banner.txt
+  security:
+    user:
+      name: admin
+      password: admin
+      roles: ACTUATOR_ADMIN
+  # DB configuration
+  liquibase:
+    changeLog: classpath:db/changelog/db.changelog-master.xml
+
+    enabled: true
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/tracker_manager_db
+    username: postgres
+    password: root
+    properties:
+      charSet: UTF-8
+    hikari:
+      minimumIdle: 2
+      maximumPoolSize: 25
+      idleTimeout: 10000
+      poolName: HikariCP
+      maxLifetime: 7200000
+      connectionTimeout: 30000
+      schema: dev
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        default_schema: dev
+        jdbc:
+          time_zone: UTC
+          lob:
+            # silence the 'wall-of-text' - unnecessary exception throw about blob types
+            non_contextual_creation: true
+        globally_quoted_identifiers: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    com:
+      sid: INFO
