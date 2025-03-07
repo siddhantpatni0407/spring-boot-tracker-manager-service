@@ -26,10 +26,10 @@ public class AuthController {
     @PostMapping(value = AppConstants.USER_REGISTER_ENDPOINT)
     public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
         log.info("register() : request - > {}", ApplicationUtils.getJSONString(request));
-        log.info("Registering user with email: {} and mobile: {}", request.getEmail(), request.getMobileNumber());
+        log.info("register() : Registering user with email: {} and mobile: {}", request.getEmail(), request.getMobileNumber());
         AuthResponse response = authService.register(request);
         log.info("register() : response - > {}", ApplicationUtils.getJSONString(response));
-        log.info("User registered successfully: {}", request.getEmail());
+        log.info("register() : User registered successfully: {}", request.getEmail());
         return ResponseEntity.ok(response);
     }
 
@@ -37,15 +37,13 @@ public class AuthController {
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
         log.info("login() : request - > {}", ApplicationUtils.getJSONString(request));
         log.info("Login attempt for user: {}", request.getEmail());
-
         AuthResponse response = authService.login(request);
         log.info("login() : response - > {}", ApplicationUtils.getJSONString(response));
-
         if ("SUCCESS".equals(response.getStatus())) {
-            log.info("Login successful for user: {}", request.getEmail());
+            log.info("login() : Login successful for user: {}", request.getEmail());
             return ResponseEntity.ok(response); // ✅ 200 OK for success
         } else {
-            log.warn("Login failed for user: {} - Reason: {}", request.getEmail(), response.getMessage());
+            log.warn("login() : Login failed for user: {} - Reason: {}", request.getEmail(), response.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response); // ✅ 401 Unauthorized
         }
     }
