@@ -1,17 +1,18 @@
 package com.sid.app.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
  * @author Siddhant Patni
  */
 @Data
+@AllArgsConstructor
 public class AuthResponse {
 
     private String token;
-
-    public AuthResponse(String token) {
-        this.token = token;
-    }
+    private String role;
+    private String status;
+    private String message;
 
 }
