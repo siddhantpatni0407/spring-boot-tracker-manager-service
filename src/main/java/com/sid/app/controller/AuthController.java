@@ -8,6 +8,7 @@ import com.sid.app.service.AuthService;
 import com.sid.app.utils.ApplicationUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,10 +37,17 @@ public class AuthController {
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
         log.info("login() : request - > {}", ApplicationUtils.getJSONString(request));
         log.info("Login attempt for user: {}", request.getEmail());
+
         AuthResponse response = authService.login(request);
         log.info("login() : response - > {}", ApplicationUtils.getJSONString(response));
-        log.info("Login successful for user: {}", request.getEmail());
-        return ResponseEntity.ok(response);
+
+        if ("SUCCESS".equals(response.getStatus())) {
+            log.info("Login successful for user: {}", request.getEmail());
+            return ResponseEntity.ok(response); // ✅ 200 OK for success
+        } else {
+            log.warn("Login failed for user: {} - Reason: {}", request.getEmail(), response.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response); // ✅ 401 Unauthorized
+        }
     }
 
 }
