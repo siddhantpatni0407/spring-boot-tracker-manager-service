@@ -1,10 +1,18 @@
 package com.sid.app.entity;
 
-import jakarta.persistence.*;
+import com.sid.app.audit.Auditable;
+import jakarta.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Getter
@@ -15,15 +23,11 @@ import lombok.Setter;
         @UniqueConstraint(columnNames = "email"),
         @UniqueConstraint(columnNames = "mobile_number")
 })
-@SequenceGenerator(
-        name = "user_sequence",        // ✅ Sequence Generator Name
-        sequenceName = "user_seq",      // ✅ Database Sequence Name
-        allocationSize = 1              // ✅ Ensure it matches DB sequence
-)
-public class User {
+@EqualsAndHashCode(callSuper = true)
+public class User extends Auditable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
 

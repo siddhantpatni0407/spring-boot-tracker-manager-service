@@ -10,6 +10,9 @@ public class AppConstants {
      */
     public static final String USER_REGISTER_ENDPOINT = "/api/v1/tracker-manager-service/user/register";
     public static final String USER_LOGIN_ENDPOINT = "/api/v1/tracker-manager-service/user/login";
+    public static final String VEHICLE_REGISTER_ENDPOINT = "/api/v1/tracker-manager-service/vehicle/register";
+    public static final String FETCH_ALL_VEHICLES_ENDPOINT = "/api/v1/tracker-manager-service/vehicle/fetch";
+    public static final String VEHICLE_ENDPOINT = "/api/v1/tracker-manager-service/vehicle";
 
     public static final String STATUS_SUCCESS = "SUCCESS";
     public static final String STATUS_FAILED = "FAILED";
@@ -24,5 +27,7 @@ public class AppConstants {
 
     public static final String AES_ALGORITHM = "AES";
     public static final String SECRET_KEY = "Xf9aLp3qzT7vN2sYgW5KbVc6Rm8QJ0dP"; // 16, 24, or 32 chars
+
+    public static final String DEFAULT_USER = "DEFAULT_USER";
 
 }
