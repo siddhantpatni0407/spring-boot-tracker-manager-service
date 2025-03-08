@@ -4,6 +4,7 @@ import com.sid.app.constants.AppConstants;
 import com.sid.app.model.VehicleDTO;
 import com.sid.app.model.ResponseDTO;
 import com.sid.app.service.VehicleService;
+import com.sid.app.utils.ApplicationUtils;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +38,7 @@ public class VehicleController {
      */
     @PostMapping(AppConstants.VEHICLE_REGISTER_ENDPOINT)
     public ResponseEntity<ResponseDTO<VehicleDTO>> registerVehicle(@RequestBody VehicleDTO request) {
-        log.info("registerVehicle() : Received request to register vehicle: {}", request);
+        log.info("registerVehicle() : Received request to register vehicle: {}", ApplicationUtils.getJSONString(request));
 
         try {
             VehicleDTO registeredVehicle = vehicleService.registerVehicle(request);
@@ -48,7 +49,7 @@ public class VehicleController {
                     .message("Vehicle registered successfully.")
                     .data(registeredVehicle)
                     .build();
-
+            log.info("registerVehicle() : response - > {}", ApplicationUtils.getJSONString(response));
             return ResponseEntity.status(HttpStatus.CREATED).body(response); // HTTP 201 Created
         } catch (EntityExistsException e) {
             log.error("registerVehicle() : Vehicle registration failed - {}", e.getMessage());

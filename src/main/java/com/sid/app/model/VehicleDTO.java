@@ -1,5 +1,6 @@
 package com.sid.app.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,9 +41,11 @@ public class VehicleDTO {
     @JsonProperty("registrationNumber")
     private String registrationNumber;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonProperty("registrationDate")
     private LocalDate registrationDate;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonProperty("registrationValidityDate")
     private LocalDate registrationValidityDate;
 
