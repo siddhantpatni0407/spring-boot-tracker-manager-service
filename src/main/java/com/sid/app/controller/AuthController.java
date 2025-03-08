@@ -25,6 +25,7 @@ public class AuthController {
 
     @PostMapping(value = AppConstants.USER_REGISTER_ENDPOINT)
     public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
+
         log.info("register() : request - > {}", ApplicationUtils.getJSONString(request));
         log.info("register() : Registering user with email: {} and mobile: {}", request.getEmail(), request.getMobileNumber());
         AuthResponse response = authService.register(request);
@@ -35,6 +36,7 @@ public class AuthController {
 
     @PostMapping(value = AppConstants.USER_LOGIN_ENDPOINT)
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
+
         log.info("login() : request - > {}", ApplicationUtils.getJSONString(request));
         log.info("Login attempt for user: {}", request.getEmail());
         AuthResponse response = authService.login(request);

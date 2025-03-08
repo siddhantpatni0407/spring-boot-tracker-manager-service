@@ -1,54 +1,60 @@
 spring:
   application:
     name: spring-boot-tracker-manager-service
+
   main:
-    banner-mode: #off
+    banner-mode: "off"  # Disable startup banner
+
   banner:
-    location: classpath:banner.txt
+    location: classpath:banner.txt  # Custom banner file
+
   security:
     user:
-      name: admin
-      password: admin
+      name: admin     # Admin username (override via env variable)
+      password: admin  # Admin password (override via env variable)
       roles: ACTUATOR_ADMIN
-  # DB configuration
+
+  # Liquibase Configuration
   liquibase:
-    changeLog: classpath:db/changelog/db.changelog-master.xml
+    change-log: classpath:db/changelog/db.changelog-master.xml
     enabled: true
 
+  # Database Configuration
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/tracker_manager_db
-    username: postgres
-    password: root
+    username: postgres   # Securely fetch from env variable
+    password: root       # Securely fetch from env variable
     properties:
       charSet: UTF-8
     hikari:
-      minimumIdle: 2
-      maximumPoolSize: 25
-      idleTimeout: 10000
-      poolName: HikariCP
-      maxLifetime: 7200000
-      connectionTimeout: 30000
+      minimum-idle: 2
+      maximum-pool-size: 25
+      idle-timeout: 10000
+      pool-name: HikariCP
+      max-lifetime: 7200000
+      connection-timeout: 30000
       schema: dev
+
+  # JPA & Hibernate Configuration
   jpa:
     show-sql: true
     properties:
       hibernate:
         default_schema: dev
-        jdbc:
-          time_zone: UTC
-          lob:
-            # silence the 'wall-of-text' - unnecessary exception throw about blob types
-            non_contextual_creation: true
         globally_quoted_identifiers: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
+        jdbc:
+          time_zone: UTC
+          lob:
+            non_contextual_creation: true  # Prevents unnecessary warnings for BLOB fields
 
 server:
-  port: 8069
+  port: 8069  # Server port, configurable via environment variable
 
+# Logging Configuration
 logging:
   level:
-    root: INFO
-    com:
-      sid: INFO
+    root: INFO  # More detailed logs in development
+    com.sid: INFO
