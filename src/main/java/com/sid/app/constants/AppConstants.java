@@ -13,6 +13,8 @@ public class AppConstants {
     public static final String VEHICLE_REGISTER_ENDPOINT = "/api/v1/tracker-manager-service/vehicle/register";
     public static final String FETCH_ALL_VEHICLES_ENDPOINT = "/api/v1/tracker-manager-service/vehicle/fetch";
     public static final String VEHICLE_ENDPOINT = "/api/v1/tracker-manager-service/vehicle";
+    public static final String FETCH_ALL_USERS_ENDPOINT = "/api/v1/tracker-manager-service/user/fetch";
+    public static final String USER_ENDPOINT = "/api/v1/tracker-manager-service/user";
 
     public static final String STATUS_SUCCESS = "SUCCESS";
     public static final String STATUS_FAILED = "FAILED";

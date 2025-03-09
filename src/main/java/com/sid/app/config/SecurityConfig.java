@@ -23,7 +23,7 @@ public class SecurityConfig {
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeExchange(auth -> auth
-                        .pathMatchers(AppConstants.USER_REGISTER_ENDPOINT, AppConstants.USER_LOGIN_ENDPOINT, AppConstants.VEHICLE_REGISTER_ENDPOINT, AppConstants.VEHICLE_ENDPOINT, AppConstants.FETCH_ALL_VEHICLES_ENDPOINT)
+                        .pathMatchers(AppConstants.USER_REGISTER_ENDPOINT, AppConstants.USER_LOGIN_ENDPOINT, AppConstants.VEHICLE_REGISTER_ENDPOINT, AppConstants.VEHICLE_ENDPOINT, AppConstants.FETCH_ALL_VEHICLES_ENDPOINT, AppConstants.FETCH_ALL_USERS_ENDPOINT, AppConstants.USER_ENDPOINT)
                         .permitAll()
                         .anyExchange().authenticated()
                 )

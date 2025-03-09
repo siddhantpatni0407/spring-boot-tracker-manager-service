@@ -112,6 +112,29 @@ public class VehicleService {
         return mapToDTO(vehicle);
     }
 
+    @Transactional
+    public VehicleDTO updateVehicle(VehicleDTO vehicleDTO) {
+        log.info("updateVehicle() : Updating vehicle with ID: {}", vehicleDTO.getVehicleId());
+
+        Vehicle vehicle = vehicleRepository.findById(vehicleDTO.getVehicleId())
+                .orElseThrow(() -> new EntityNotFoundException("Vehicle not found with ID: " + vehicleDTO.getVehicleId()));
+
+        vehicle.setVehicleType(vehicleDTO.getVehicleType());
+        vehicle.setVehicleCompany(vehicleDTO.getVehicleCompany());
+        vehicle.setVehicleModel(vehicleDTO.getVehicleModel());
+        vehicle.setChassisNumber(vehicleDTO.getChassisNumber());
+        vehicle.setEngineNumber(vehicleDTO.getEngineNumber());
+        vehicle.setRegistrationDate(vehicleDTO.getRegistrationDate());
+        vehicle.setRegistrationValidityDate(vehicleDTO.getRegistrationValidityDate());
+        vehicle.setRegistrationNumber(vehicleDTO.getRegistrationNumber());
+        vehicle.setOwnerName(vehicleDTO.getOwnerName());
+
+        Vehicle updatedVehicle = vehicleRepository.save(vehicle);
+        log.info("updateVehicle() : Vehicle updated successfully with ID: {}", updatedVehicle.getVehicleId());
+
+        return mapToDTO(updatedVehicle);
+    }
+
     /**
      * Deletes a vehicle by ID.
      *

@@ -141,6 +141,43 @@ public class VehicleController {
         return ResponseEntity.ok(response);
     }
 
+    @PutMapping(AppConstants.VEHICLE_ENDPOINT)
+    public ResponseEntity<ResponseDTO<VehicleDTO>> updateVehicle(@RequestBody VehicleDTO request) {
+        log.info("updateVehicle() : Received request to update vehicle: {}", ApplicationUtils.getJSONString(request));
+
+        try {
+            VehicleDTO updatedVehicle = vehicleService.updateVehicle(request);
+            log.info("updateVehicle() : Vehicle updated successfully with ID: {}", updatedVehicle.getVehicleId());
+
+            ResponseDTO<VehicleDTO> response = ResponseDTO.<VehicleDTO>builder()
+                    .status("SUCCESS")
+                    .message("Vehicle updated successfully.")
+                    .data(updatedVehicle)
+                    .build();
+            return ResponseEntity.ok(response);
+        } catch (EntityNotFoundException e) {
+            log.error("updateVehicle() : Vehicle update failed - {}", e.getMessage());
+
+            ResponseDTO<VehicleDTO> response = ResponseDTO.<VehicleDTO>builder()
+                    .status("FAILURE")
+                    .message(e.getMessage())
+                    .data(null)
+                    .build();
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        } catch (Exception e) {
+            log.error("updateVehicle() : Unexpected error during vehicle update", e);
+
+            ResponseDTO<VehicleDTO> response = ResponseDTO.<VehicleDTO>builder()
+                    .status("ERROR")
+                    .message("An unexpected error occurred during vehicle update.")
+                    .data(null)
+                    .build();
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
     /**
      * Deletes a vehicle by ID.
      *
