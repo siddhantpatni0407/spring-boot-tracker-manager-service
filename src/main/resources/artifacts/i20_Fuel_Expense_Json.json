@@ -1,0 +1,932 @@
+[
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-02-08",
+		"quantity": 4.48,
+		"rate": 111.64,
+		"amount": 500,
+		"odometerReading": 21,
+		"location": "Aurangabad, Maharashtra",
+		"paymentMode": "Cash"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-02-08",
+		"quantity": 18.81,
+		"rate": 111.64,
+		"amount": 2100,
+		"odometerReading": 21,
+		"location": "Aurangabad, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-02-11",
+		"quantity": 26.43,
+		"rate": 111.64,
+		"amount": 2950,
+		"odometerReading": 181,
+		"location": "Aurangabad, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-02-20",
+		"quantity": 32.05,
+		"rate": 111.41,
+		"amount": 3570.69,
+		"odometerReading": 750,
+		"location": "Sillod, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-02-26",
+		"quantity": 29.52,
+		"rate": 111.66,
+		"amount": 3296.2,
+		"odometerReading": 1170,
+		"location": "Aurangabad, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-03-05",
+		"quantity": 40.22,
+		"rate": 116,
+		"amount": 4665.52,
+		"odometerReading": 1735,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-03-16",
+		"quantity": 34.04,
+		"rate": 111.62,
+		"amount": 3800.9,
+		"odometerReading": 2406,
+		"location": "Aurangabad, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-03-31",
+		"quantity": 32.2,
+		"rate": 118.04,
+		"amount": 3800.88,
+		"odometerReading": 2869,
+		"location": "Sillod, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-04-07",
+		"quantity": 28.91,
+		"rate": 121.07,
+		"amount": 3500,
+		"odometerReading": 3308,
+		"location": "Kannad, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-04-10",
+		"quantity": 6.56,
+		"rate": 122.04,
+		"amount": 800,
+		"odometerReading": 3552,
+		"location": "Talni, Maharashtra",
+		"paymentMode": "Cash"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-04-16",
+		"quantity": 24.94,
+		"rate": 120.31,
+		"amount": 3000,
+		"odometerReading": 3921,
+		"location": "Chandwad, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-04-24",
+		"quantity": 24.78,
+		"rate": 121.07,
+		"amount": 3000,
+		"odometerReading": 4382,
+		"location": "Kannad, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-04-30",
+		"quantity": 35.81,
+		"rate": 125.73,
+		"amount": 4502.39,
+		"odometerReading": 4784,
+		"location": "Nashik, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-05-06",
+		"quantity": 34.97,
+		"rate": 121.55,
+		"amount": 4250.6,
+		"odometerReading": 5300,
+		"location": "Aurangabad, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-05-08",
+		"quantity": 31.7,
+		"rate": 119.9,
+		"amount": 3800.83,
+		"odometerReading": 5750,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Cash"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-05-14",
+		"quantity": 37.12,
+		"rate": 119.9,
+		"amount": 4450.69,
+		"odometerReading": 6178,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-05-17",
+		"quantity": 24.93,
+		"rate": 120.29,
+		"amount": 3000,
+		"odometerReading": 6805,
+		"location": "Kopargaon, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-05-23",
+		"quantity": 37.03,
+		"rate": 113,
+		"amount": 4184.39,
+		"odometerReading": 7151,
+		"location": "Aurangabad, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-05-28",
+		"quantity": 37.62,
+		"rate": 111.17,
+		"amount": 4182.22,
+		"odometerReading": 7695,
+		"location": "Nagpur, Maharashtra",
+		"paymentMode": "Cash"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-05-31",
+		"quantity": 35.33,
+		"rate": 111.78,
+		"amount": 3949.18,
+		"odometerReading": 8252,
+		"location": "Kherda, Washim, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-06-11",
+		"quantity": 37.62,
+		"rate": 111.65,
+		"amount": 4200.27,
+		"odometerReading": 8835,
+		"location": "Lasur, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-06-28",
+		"quantity": 30.63,
+		"rate": 112.97,
+		"amount": 3460.27,
+		"odometerReading": 9290,
+		"location": "Aurangabad, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-07-09",
+		"quantity": 37.88,
+		"rate": 110.88,
+		"amount": 4200.13,
+		"odometerReading": 9891,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-07-16",
+		"quantity": 39.37,
+		"rate": 107.95,
+		"amount": 4249.99,
+		"odometerReading": 10493,
+		"location": "Aurangabad, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-07-31",
+		"quantity": 39.03,
+		"rate": 107.62,
+		"amount": 4200.4,
+		"odometerReading": 11114,
+		"location": "Sillod, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-08-13",
+		"quantity": 39.28,
+		"rate": 106.95,
+		"amount": 4201,
+		"odometerReading": 11729,
+		"location": "Mehkar, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-09-03",
+		"quantity": 38.88,
+		"rate": 108.03,
+		"amount": 4200.2,
+		"odometerReading": 12373,
+		"location": "Aurangabad, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-09-24",
+		"quantity": 38.33,
+		"rate": 107.02,
+		"amount": 4102.07,
+		"odometerReading": 12976,
+		"location": "Kannad, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-10-15",
+		"quantity": 39.08,
+		"rate": 107.49,
+		"amount": 4200.7,
+		"odometerReading": 13679,
+		"location": "Phulambri, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-11-01",
+		"quantity": 35.59,
+		"rate": 106.78,
+		"amount": 3800.65,
+		"odometerReading": 14235,
+		"location": "Nashik, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-11-19",
+		"quantity": 39.57,
+		"rate": 106.23,
+		"amount": 4203.52,
+		"odometerReading": 14888,
+		"location": "Kopargaon, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-11-26",
+		"quantity": 28.06,
+		"rate": 106.91,
+		"amount": 3000,
+		"odometerReading": 15382,
+		"location": "Pachora, Maharashtra",
+		"paymentMode": "Cash"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-12-13",
+		"quantity": 39.81,
+		"rate": 108.03,
+		"amount": 4300.67,
+		"odometerReading": 15979,
+		"location": "Aurangabad, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-12-18",
+		"quantity": 39.41,
+		"rate": 106.58,
+		"amount": 4200.32,
+		"odometerReading": 16673,
+		"location": "Pravarasangam, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-12-27",
+		"quantity": 38.99,
+		"rate": 107.82,
+		"amount": 4203.9,
+		"odometerReading": 17342,
+		"location": "Sillod, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-12-29",
+		"quantity": 40.05,
+		"rate": 102.36,
+		"amount": 4099.51,
+		"odometerReading": 17978,
+		"location": "Kolhapur, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-12-30",
+		"quantity": 36.38,
+		"rate": 103.63,
+		"amount": 3770.05,
+		"odometerReading": 18599,
+		"location": "Khadur, Karnataka",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2022-12-30",
+		"quantity": 2.51,
+		"rate": 103.63,
+		"amount": 260.11,
+		"odometerReading": 18601,
+		"location": "Khadur, Karnataka",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-01-01",
+		"quantity": 40.11,
+		"rate": 101.72,
+		"amount": 4079.98,
+		"odometerReading": 19236,
+		"location": "Bijapur, Karnataka",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-01-08",
+		"quantity": 38.91,
+		"rate": 108,
+		"amount": 4202.28,
+		"odometerReading": 19857,
+		"location": "Aurangabad, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-01-26",
+		"quantity": 40.19,
+		"rate": 107.49,
+		"amount": 4320.02,
+		"odometerReading": 20516,
+		"location": "Phulambri, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-02-05",
+		"quantity": 40,
+		"rate": 107.02,
+		"amount": 4280.8,
+		"odometerReading": 21166,
+		"location": "Kannad, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-02-15",
+		"quantity": 38.85,
+		"rate": 106.06,
+		"amount": 4120.43,
+		"odometerReading": 21761,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-02-24",
+		"quantity": 39.94,
+		"rate": 107.67,
+		"amount": 4300.34,
+		"odometerReading": 22415,
+		"location": "Ghatnandra, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-03-04",
+		"quantity": 40.02,
+		"rate": 107.49,
+		"amount": 4301.74,
+		"odometerReading": 23041,
+		"location": "Phulambri, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-03-19",
+		"quantity": 38,
+		"rate": 107.75,
+		"amount": 4094.5,
+		"odometerReading": 23605,
+		"location": "Sillod, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-04-14",
+		"quantity": 18.86,
+		"rate": 106.06,
+		"amount": 2000,
+		"odometerReading": 24162,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-04-15",
+		"quantity": 18.92,
+		"rate": 105.7,
+		"amount": 2000,
+		"odometerReading": 24403,
+		"location": "Panvel, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-04-29",
+		"quantity": 23.59,
+		"rate": 105.98,
+		"amount": 2500,
+		"odometerReading": 24680,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-05-11",
+		"quantity": 23.43,
+		"rate": 106.69,
+		"amount": 2500,
+		"odometerReading": 24955,
+		"location": "Lasur, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-05-14",
+		"quantity": 32.98,
+		"rate": 106.74,
+		"amount": 3520.28,
+		"odometerReading": 25306,
+		"location": "Sangamner, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-06-10",
+		"quantity": 39.16,
+		"rate": 105.95,
+		"amount": 4149,
+		"odometerReading": 25711,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-06-20",
+		"quantity": 39,
+		"rate": 107.67,
+		"amount": 4200,
+		"odometerReading": 26253,
+		"location": "Ghatnandra, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-07-04",
+		"quantity": 24.46,
+		"rate": 106.31,
+		"amount": 2600,
+		"odometerReading": 26846,
+		"location": "Mumbai, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-07-21",
+		"quantity": 25.51,
+		"rate": 105.84,
+		"amount": 2700,
+		"odometerReading": 27192,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-08-05",
+		"quantity": 37.76,
+		"rate": 105.98,
+		"amount": 4001.8,
+		"odometerReading": 27481,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-08-23",
+		"quantity": 37.74,
+		"rate": 105.98,
+		"amount": 4000,
+		"odometerReading": 27946,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-09-30",
+		"quantity": 28.31,
+		"rate": 105.98,
+		"amount": 3000.29,
+		"odometerReading": 28259,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-10-09",
+		"quantity": 28.35,
+		"rate": 105.83,
+		"amount": 3000,
+		"odometerReading": 28860,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-11-14",
+		"quantity": 37.15,
+		"rate": 107.67,
+		"amount": 4000,
+		"odometerReading": 29320,
+		"location": "Ghatnandra, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-11-18",
+		"quantity": 18.81,
+		"rate": 106.27,
+		"amount": 2000,
+		"odometerReading": 29851,
+		"location": "Kopargaon, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-11-26",
+		"quantity": 9.45,
+		"rate": 105.82,
+		"amount": 1000,
+		"odometerReading": 30176,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-12-22",
+		"quantity": 18.87,
+		"rate": 106.01,
+		"amount": 2000,
+		"odometerReading": 30302,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2023-12-25",
+		"quantity": 37.74,
+		"rate": 106.07,
+		"amount": 4003.08,
+		"odometerReading": 30548,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-01-01",
+		"quantity": 24.67,
+		"rate": 106.21,
+		"amount": 2620.2,
+		"odometerReading": 30947,
+		"location": "Kopargaon, Maharashtra",
+		"paymentMode": "Cash"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-01-18",
+		"quantity": 23.58,
+		"rate": 106.01,
+		"amount": 2500,
+		"odometerReading": 31414,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-01-27",
+		"quantity": 28.1,
+		"rate": 106.77,
+		"amount": 3000,
+		"odometerReading": 31736,
+		"location": "Sinner, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-02-14",
+		"quantity": 37.74,
+		"rate": 106.01,
+		"amount": 4000.81,
+		"odometerReading": 32168,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-03-27",
+		"quantity": 26.86,
+		"rate": 103.92,
+		"amount": 2791.29,
+		"odometerReading": 32501,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-03-31",
+		"quantity": 14.19,
+		"rate": 105.74,
+		"amount": 1500,
+		"odometerReading": 33080,
+		"location": "Sillod, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-04-08",
+		"quantity": 14.2,
+		"rate": 105.59,
+		"amount": 1500,
+		"odometerReading": 33265,
+		"location": "Ghatnandra, Maharashtra",
+		"paymentMode": "Cash"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-04-09",
+		"quantity": 28.54,
+		"rate": 105.12,
+		"amount": 3000,
+		"odometerReading": 33425,
+		"location": "Aurangabad, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-05-01",
+		"quantity": 38.5,
+		"rate": 103.92,
+		"amount": 4000.92,
+		"odometerReading": 33885,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-05-18",
+		"quantity": 14.43,
+		"rate": 103.92,
+		"amount": 1500,
+		"odometerReading": 34362,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-05-23",
+		"quantity": 38.39,
+		"rate": 104.48,
+		"amount": 4010.99,
+		"odometerReading": 34566,
+		"location": "Alephata, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-05-24",
+		"quantity": 33.38,
+		"rate": 104.86,
+		"amount": 3500,
+		"odometerReading": 35159,
+		"location": "Amravati, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-06-08",
+		"quantity": 19.2,
+		"rate": 104.15,
+		"amount": 2000,
+		"odometerReading": 35544,
+		"location": "Kopargaon, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-06-16",
+		"quantity": 28.85,
+		"rate": 103.98,
+		"amount": 3000,
+		"odometerReading": 35915,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-07-13",
+		"quantity": 35.16,
+		"rate": 103.87,
+		"amount": 3652.06,
+		"odometerReading": 36274,
+		"location": "Ahmednagar, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-07-23",
+		"quantity": 38.44,
+		"rate": 104.13,
+		"amount": 4002.75,
+		"odometerReading": 36811,
+		"location": "Kopargaon, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-08-16",
+		"quantity": 24.06,
+		"rate": 103.92,
+		"amount": 2500,
+		"odometerReading": 37301,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-09-20",
+		"quantity": 23.09,
+		"rate": 103.92,
+		"amount": 2400,
+		"odometerReading": 37556,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-10-02",
+		"quantity": 21.17,
+		"rate": 103.92,
+		"amount": 2200,
+		"odometerReading": 37873,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-10-31",
+		"quantity": 22.12,
+		"rate": 103.98,
+		"amount": 2300,
+		"odometerReading": 38066,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-12-08",
+		"quantity": 22.12,
+		"rate": 103.98,
+		"amount": 2300,
+		"odometerReading": 38381,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-12-25",
+		"quantity": 36.65,
+		"rate": 104.74,
+		"amount": 3838.721,
+		"odometerReading": 38734,
+		"location": "Vadavali, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-12-26",
+		"quantity": 35.04,
+		"rate": 95.6,
+		"amount": 3349.824,
+		"odometerReading": 39325,
+		"location": "Shamlapur, Gujarat",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-12-28",
+		"quantity": 35.88,
+		"rate": 104.74,
+		"amount": 3758.0712,
+		"odometerReading": 39833,
+		"location": "Tolamal, Rajasthan",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-12-30",
+		"quantity": 37.65,
+		"rate": 106.25,
+		"amount": 4000.3125,
+		"odometerReading": 40432,
+		"location": "Milawali, Uttar Pradesh",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2024-12-31",
+		"quantity": 37.54,
+		"rate": 106.91,
+		"amount": 4013.4014,
+		"odometerReading": 41040,
+		"location": "Manpur, Madhya Pradesh",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2025-01-18",
+		"quantity": 34.93,
+		"rate": 103.98,
+		"amount": 3632.0214,
+		"odometerReading": 41611,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2025-01-21",
+		"quantity": 14.32,
+		"rate": 104.75,
+		"amount": 1500.02,
+		"odometerReading": 42059,
+		"location": "Dhodi, Maharashtra",
+		"paymentMode": "Credit Card"
+	},
+	{
+		"vehicleId": 1,
+		"fuelFilledDate": "2025-03-03",
+		"quantity": 14.43,
+		"rate": 103.98,
+		"amount": 1500.43,
+		"odometerReading": 42059,
+		"location": "Pune, Maharashtra",
+		"paymentMode": "Credit Card"
+	}
+]
