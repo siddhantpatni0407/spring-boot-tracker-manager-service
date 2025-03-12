@@ -59,6 +59,35 @@ public class FuelExpenseService {
         return convertToDTO(savedExpense);
     }
 
+    public List<FuelExpenseDTO> saveFuelExpenses(List<FuelExpenseDTO> fuelExpenseDTOList) {
+        log.info("Saving multiple fuel expenses");
+
+        List<FuelExpense> fuelExpenses = fuelExpenseDTOList.stream().map(fuelExpenseDTO -> {
+            Vehicle vehicle = vehicleRepository.findById(fuelExpenseDTO.getVehicleId())
+                    .orElseThrow(() -> new EntityNotFoundException("Vehicle not found with ID: " + fuelExpenseDTO.getVehicleId()));
+
+            FuelExpense fuelExpense = new FuelExpense();
+            fuelExpense.setVehicle(vehicle);
+            fuelExpense.setFuelFilledDate(fuelExpenseDTO.getFuelFilledDate());
+            fuelExpense.setQuantity(fuelExpenseDTO.getQuantity());
+            fuelExpense.setRate(fuelExpenseDTO.getRate());
+            fuelExpense.setAmount(fuelExpenseDTO.getAmount());
+            fuelExpense.setOdometerReading(fuelExpenseDTO.getOdometerReading());
+            fuelExpense.setLocation(fuelExpenseDTO.getLocation());
+            fuelExpense.setPaymentMode(fuelExpenseDTO.getPaymentMode());
+
+            return fuelExpense;
+        }).collect(Collectors.toList());
+
+        List<FuelExpense> savedExpenses = fuelExpenseRepository.saveAll(fuelExpenses);
+        log.info("Fuel expenses saved successfully");
+
+        return savedExpenses
+                .stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
     /**
      * Retrieve all fuel expenses.
      *

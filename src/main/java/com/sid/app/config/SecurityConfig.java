@@ -26,12 +26,14 @@ public class SecurityConfig {
                         .pathMatchers(AppConstants.USER_REGISTER_ENDPOINT,
                                 AppConstants.USER_LOGIN_ENDPOINT,
                                 AppConstants.VEHICLE_REGISTER_ENDPOINT,
+                                AppConstants.VEHICLE_BULK_REGISTER_ENDPOINT,
                                 AppConstants.VEHICLE_ENDPOINT,
                                 AppConstants.FETCH_ALL_VEHICLES_ENDPOINT,
                                 AppConstants.FETCH_ALL_USERS_ENDPOINT,
                                 AppConstants.USER_ENDPOINT,
                                 AppConstants.VEHICLE_ALL_FUEL_EXPENSE_ENDPOINT,
-                                AppConstants.VEHICLE_FUEL_EXPENSE_ENDPOINT)
+                                AppConstants.VEHICLE_FUEL_EXPENSE_ENDPOINT,
+                                AppConstants.VEHICLE_FUEL_BULK_EXPENSE_ENDPOINT)
                         .permitAll()
                         .anyExchange().authenticated()
                 )

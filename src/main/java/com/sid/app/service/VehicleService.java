@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -67,6 +68,46 @@ public class VehicleService {
 
         return mapToDTO(savedVehicle);
     }
+
+    @Transactional
+    public List<VehicleDTO> registerVehicles(List<VehicleDTO> vehicleDTOs) {
+        List<VehicleDTO> registeredVehicles = new ArrayList<>();
+
+        for (VehicleDTO vehicleDTO : vehicleDTOs) {
+            log.info("registerVehicles() : Processing vehicle with chassis number: {} and registration number: {}",
+                    vehicleDTO.getChassisNumber(), vehicleDTO.getRegistrationNumber());
+
+            // Check if the vehicle already exists
+            Optional<Vehicle> existingVehicle = vehicleRepository.findByChassisNumberOrRegistrationNumber(
+                    vehicleDTO.getChassisNumber(), vehicleDTO.getRegistrationNumber());
+
+            if (existingVehicle.isPresent()) {
+                log.warn("registerVehicles() : Vehicle with chassis number {} or registration number {} already exists. Skipping...",
+                        vehicleDTO.getChassisNumber(), vehicleDTO.getRegistrationNumber());
+                continue; // Skip duplicate vehicle
+            }
+
+            // Save new vehicle details
+            Vehicle vehicle = Vehicle.builder()
+                    .vehicleType(vehicleDTO.getVehicleType())
+                    .vehicleCompany(vehicleDTO.getVehicleCompany())
+                    .vehicleModel(vehicleDTO.getVehicleModel())
+                    .chassisNumber(vehicleDTO.getChassisNumber())
+                    .engineNumber(vehicleDTO.getEngineNumber())
+                    .registrationDate(vehicleDTO.getRegistrationDate())
+                    .registrationValidityDate(vehicleDTO.getRegistrationValidityDate())
+                    .registrationNumber(vehicleDTO.getRegistrationNumber())
+                    .ownerName(vehicleDTO.getOwnerName())
+                    .build();
+
+            Vehicle savedVehicle = vehicleRepository.save(vehicle);
+            registeredVehicles.add(mapToDTO(savedVehicle));
+        }
+
+        log.info("registerVehicles() : Bulk vehicle registration completed. Total registered: {}", registeredVehicles.size());
+        return registeredVehicles;
+    }
+
 
     /**
      * Retrieves all registered vehicles.

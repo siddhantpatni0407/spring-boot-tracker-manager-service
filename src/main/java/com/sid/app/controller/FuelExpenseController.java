@@ -50,6 +50,21 @@ public class FuelExpenseController {
         }
     }
 
+    @PostMapping(AppConstants.VEHICLE_FUEL_BULK_EXPENSE_ENDPOINT)
+    public ResponseEntity<ResponseDTO<List<FuelExpenseDTO>>> addFuelExpenses(@RequestBody List<FuelExpenseDTO> fuelExpenseDTOList) {
+        log.info("Adding multiple fuel expenses: {}", fuelExpenseDTOList);
+        try {
+            List<FuelExpenseDTO> savedExpenses = fuelExpenseService.saveFuelExpenses(fuelExpenseDTOList);
+            return ResponseEntity.ok(ApplicationUtils.buildResponse(savedExpenses, "Fuel expenses added successfully", "SUCCESS"));
+        } catch (EntityNotFoundException e) {
+            log.error("Error: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApplicationUtils.buildResponse(null, e.getMessage(), "ERROR"));
+        } catch (Exception e) {
+            log.error("Error adding fuel expenses: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ApplicationUtils.buildResponse(null, e.getMessage(), "ERROR"));
+        }
+    }
+
     /**
      * Retrieve all fuel expenses.
      *

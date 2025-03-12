@@ -75,6 +75,41 @@ public class VehicleController {
     }
 
     /**
+     * Registers bulk vehicles.
+     *
+     * @param requests The bulk vehicle details to register.
+     * @return ResponseEntity containing the response status, message, and registered vehicle details.
+     */
+    @PostMapping(AppConstants.VEHICLE_BULK_REGISTER_ENDPOINT)
+    public ResponseEntity<ResponseDTO<List<VehicleDTO>>> registerVehicles(@RequestBody List<VehicleDTO> requests) {
+        log.info("registerVehicles() : Received request to register {} vehicles", requests.size());
+
+        try {
+            List<VehicleDTO> registeredVehicles = vehicleService.registerVehicles(requests);
+            log.info("registerVehicles() : Successfully registered {} vehicles", registeredVehicles.size());
+
+            ResponseDTO<List<VehicleDTO>> response = ResponseDTO.<List<VehicleDTO>>builder()
+                    .status("SUCCESS")
+                    .message("Vehicles registered successfully.")
+                    .data(registeredVehicles)
+                    .build();
+
+            log.info("registerVehicles() : response - > {}", ApplicationUtils.getJSONString(response));
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } catch (Exception e) {
+            log.error("registerVehicles() : Unexpected error during bulk vehicle registration", e);
+
+            ResponseDTO<List<VehicleDTO>> response = ResponseDTO.<List<VehicleDTO>>builder()
+                    .status("ERROR")
+                    .message("An unexpected error occurred during bulk vehicle registration.")
+                    .data(null)
+                    .build();
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
+    /**
      * Retrieves all registered vehicles.
      *
      * @return ResponseEntity containing the response status, message, and list of all registered vehicles.
