@@ -2,7 +2,10 @@ package com.sid.app.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.sid.app.model.ResponseDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -41,6 +44,23 @@ public class ApplicationUtils {
             }
         }
         return null;
+    }
+
+    /**
+     * Builds a response with dynamic status and message.
+     *
+     * @param data    The response data (nullable)
+     * @param message Response message
+     * @param status  HTTP status code
+     * @param <T>     Type of the response data
+     * @return ResponseEntity with standardized response format
+     */
+    public static <T> ResponseDTO<T> buildResponse(T data, String message, String status) {
+        return ResponseDTO.<T>builder()
+                .status(status)
+                .message(message)
+                .data(data)
+                .build();
     }
 
 }

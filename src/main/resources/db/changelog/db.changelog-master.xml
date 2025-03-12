@@ -10,5 +10,7 @@
     <changeSet id="2" author="sid">
         <sqlFile path="db/scripts/add_vehicle_table.sql"/>
     </changeSet>
-
+    <changeSet id="3" author="sid">
+        <sqlFile path="db/scripts/add_fuel_expense_table.sql"/>
+    </changeSet>
 </databaseChangeLog>

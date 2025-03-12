@@ -36,7 +36,7 @@ public class Vehicle extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "vehicle_id")
+    @Column(name = "vehicle_id", nullable = false)
     private Long vehicleId;
 
     @Column(name = "vehicle_type", nullable = false)
