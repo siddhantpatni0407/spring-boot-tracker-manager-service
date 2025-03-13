@@ -54,8 +54,20 @@ spring:
           lob:
             non_contextual_creation: true  # Prevents unnecessary warnings for BLOB fields
 
+stock-market:
+  nifty-50:
+    url: https://www.nseindia.com/api/equity-stockIndices
+
 server:
   port: ${SERVER_PORT:8069}  # Server port, configurable via environment variable
+
+webclient:
+  config:
+    memory-buffer-size: 524288
+    timeout: 30
+    retry:
+      max-retry: 3
+      delay: 5
 
 # Logging Configuration
 logging:
