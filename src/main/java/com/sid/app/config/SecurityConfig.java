@@ -23,7 +23,8 @@ public class SecurityConfig {
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeExchange(auth -> auth
-                        .pathMatchers(AppConstants.USER_REGISTER_ENDPOINT,
+                        .pathMatchers(
+                                AppConstants.USER_REGISTER_ENDPOINT,
                                 AppConstants.USER_LOGIN_ENDPOINT,
                                 AppConstants.VEHICLE_REGISTER_ENDPOINT,
                                 AppConstants.VEHICLE_BULK_REGISTER_ENDPOINT,
@@ -33,8 +34,9 @@ public class SecurityConfig {
                                 AppConstants.USER_ENDPOINT,
                                 AppConstants.VEHICLE_ALL_FUEL_EXPENSE_ENDPOINT,
                                 AppConstants.VEHICLE_FUEL_EXPENSE_ENDPOINT,
-                                AppConstants.VEHICLE_FUEL_BULK_EXPENSE_ENDPOINT)
-                        .permitAll()
+                                AppConstants.VEHICLE_FUEL_BULK_EXPENSE_ENDPOINT,
+                                AppConstants.STOCK_NIFTY_50_DATA_ENDPOINT
+                        ).permitAll()
                         .anyExchange().authenticated()
                 )
                 .build();
@@ -50,7 +52,8 @@ public class SecurityConfig {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:4200")); // ✅ Match frontend URL
         corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+        corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Access-Control-Allow-Origin"));
+        corsConfig.setExposedHeaders(Arrays.asList("Authorization", "Content-Type"));
         corsConfig.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
