@@ -1,0 +1,714 @@
+{
+	"info": {
+		"_postman_id": "7c7cba62-4b69-4206-ae2d-d86fb226304b",
+		"name": "spring-boot-tracker-manager-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6002209"
+	},
+	"item": [
+		{
+			"name": "MS - LOCAL",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Siya   \",\r\n    \"email\": \"siyapatni07@gmail.com\",\r\n    \"mobileNumber\": \"7588311795\",\r\n    \"password\": \"Siya@0708\",\r\n    \"role\": \"USER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/v1/tracker-manager-service/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"tracker-manager-service",
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"siddhant4patni@gmail.com\",\r\n    \"password\": \"Sid@0407\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/v1/tracker-manager-service/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"tracker-manager-service",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Vehicle",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vehicleType\": \"Sedan\",\r\n    \"vehicleCompany\": \"Toyota\",\r\n    \"vehicleModel\": \"Camry\",\r\n    \"chassisNumber\": \"CH124567890\",\r\n    \"engineNumber\": \"EN9876543210\",\r\n    \"registrationNumber\": \"MH12AB1234\",\r\n    \"registrationDate\": \"2023-05-15\",\r\n    \"registrationValidityDate\": \"2033-05-15\",\r\n    \"ownerName\": \"John Doe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/v1/tracker-manager-service/vehicle/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"tracker-manager-service",
+								"vehicle",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Bulk Vehicles",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"vehicleRegistrationNumber\": \"MH20FY4782\",\r\n        \"fuelFilledDate\": \"08-02-2022\",\r\n        \"quantity\": 4.48,\r\n        \"rate\": 111.64,\r\n        \"amount\": 500,\r\n        \"odometerReading\": 21,\r\n        \"location\": \"Aurangabad, Maharashtra\",\r\n        \"paymentMode\": \"Cash\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"vehicleRegistrationNumber\": \"MH20FY4782\",\r\n        \"fuelFilledDate\": \"08-02-2022\",\r\n        \"quantity\": 18.81,\r\n        \"rate\": 111.64,\r\n        \"amount\": 2100,\r\n        \"odometerReading\": 21,\r\n        \"location\": \"Aurangabad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"vehicleRegistrationNumber\": \"MH20FY4782\",\r\n        \"fuelFilledDate\": \"11-02-2022\",\r\n        \"quantity\": 26.43,\r\n        \"rate\": 111.64,\r\n        \"amount\": 2950,\r\n        \"odometerReading\": 181,\r\n        \"location\": \"Aurangabad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"vehicleRegistrationNumber\": \"MH20FY4782\",\r\n        \"fuelFilledDate\": \"20-02-2022\",\r\n        \"quantity\": 32.05,\r\n        \"rate\": 111.41,\r\n        \"amount\": 3570.69,\r\n        \"odometerReading\": 750,\r\n        \"location\": \"Sillod, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"vehicleRegistrationNumber\": \"MH20FY4782\",\r\n        \"fuelFilledDate\": \"26-02-2022\",\r\n        \"quantity\": 29.52,\r\n        \"rate\": 111.66,\r\n        \"amount\": 3296.2,\r\n        \"odometerReading\": 1170,\r\n        \"location\": \"Aurangabad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"vehicleRegistrationNumber\": \"MH20FY4782\",\r\n        \"fuelFilledDate\": \"05-03-2022\",\r\n        \"quantity\": 40.22,\r\n        \"rate\": 116,\r\n        \"amount\": 4665.52,\r\n        \"odometerReading\": 1735,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"vehicleRegistrationNumber\": \"MH20FY4782\",\r\n        \"fuelFilledDate\": \"16-03-2022\",\r\n        \"quantity\": 34.04,\r\n        \"rate\": 111.62,\r\n        \"amount\": 3800.9,\r\n        \"odometerReading\": 2406,\r\n        \"location\": \"Aurangabad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"vehicleRegistrationNumber\": \"MH20FY4782\",\r\n        \"fuelFilledDate\": \"31-03-2022\",\r\n        \"quantity\": 32.2,\r\n        \"rate\": 118.04,\r\n        \"amount\": 3800.88,\r\n        \"odometerReading\": 2869,\r\n        \"location\": \"Sillod, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"vehicleRegistrationNumber\": \"MH20FY4782\",\r\n        \"fuelFilledDate\": \"07-04-2022\",\r\n        \"quantity\": 28.91,\r\n        \"rate\": 121.07,\r\n        \"amount\": 3500,\r\n        \"odometerReading\": 3308,\r\n        \"location\": \"Kannad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"vehicleRegistrationNumber\": \"MH20FY4782\",\r\n        \"fuelFilledDate\": \"10-04-2022\",\r\n        \"quantity\": 6.56,\r\n        \"rate\": 122.04,\r\n        \"amount\": 800,\r\n        \"odometerReading\": 3552,\r\n        \"location\": \"Talni, Maharashtra\",\r\n        \"paymentMode\": \"Cash\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/v1/tracker-manager-service/vehicle/bulk-register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"tracker-manager-service",
+								"vehicle",
+								"bulk-register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Vehicle",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vehicleId\" : 117,\r\n    \"vehicleType\": \"Sedan\",\r\n    \"vehicleCompany\": \"Toyota\",\r\n    \"vehicleModel\": \"Camry\",\r\n    \"chassisNumber\": \"CH124567890\",\r\n    \"engineNumber\": \"EN9876543210\",\r\n    \"registrationNumber\": \"MH12AB1234\",\r\n    \"registrationDate\": \"2023-05-15\",\r\n    \"registrationValidityDate\": \"2033-05-15\",\r\n    \"ownerName\": \"John Doe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/v1/tracker-manager-service/vehicle",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"tracker-manager-service",
+								"vehicle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8069/api/v1/tracker-manager-service/user/fetch",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"tracker-manager-service",
+								"user",
+								"fetch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vehicleType\": \"Sedan\",\r\n    \"vehicleCompany\": \"Toyota\",\r\n    \"vehicleModel\": \"Camry\",\r\n    \"chassisNumber\": \"CH1234567890\",\r\n    \"engineNumber\": \"EN9876543210\",\r\n    \"registrationNumber\": \"MH12AB1234\",\r\n    \"registrationDate\": \"2023-05-15\",\r\n    \"registrationValidityDate\": \"2033-05-15\",\r\n    \"ownerName\": \"John Doe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/v1/tracker-manager-service/user?userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"tracker-manager-service",
+								"user"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"ABC\",\r\n    \"email\": \"abc@gmail.com\",\r\n    \"mobileNumber\": \"1254780934\",\r\n    \"role\": \"USER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/v1/tracker-manager-service/user?userId=6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"tracker-manager-service",
+								"user"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vehicleType\": \"Sedan\",\r\n    \"vehicleCompany\": \"Toyota\",\r\n    \"vehicleModel\": \"Camry\",\r\n    \"chassisNumber\": \"CH1234567890\",\r\n    \"engineNumber\": \"EN9876543210\",\r\n    \"registrationNumber\": \"MH12AB1234\",\r\n    \"registrationDate\": \"2023-05-15\",\r\n    \"registrationValidityDate\": \"2033-05-15\",\r\n    \"ownerName\": \"John Doe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/v1/tracker-manager-service/user?userId=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"tracker-manager-service",
+								"user"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Vehicles",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vehicleType\": \"Sedan\",\r\n    \"vehicleCompany\": \"Toyota\",\r\n    \"vehicleModel\": \"Camry\",\r\n    \"chassisNumber\": \"CH1234567890\",\r\n    \"engineNumber\": \"EN9876543210\",\r\n    \"registrationNumber\": \"MH12AB1234\",\r\n    \"registrationDate\": \"2023-05-15\",\r\n    \"registrationValidityDate\": \"2033-05-15\",\r\n    \"ownerName\": \"John Doe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/v1/tracker-manager-service/vehicle/fetch",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"tracker-manager-service",
+								"vehicle",
+								"fetch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Vehicle",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vehicleType\": \"Sedan\",\r\n    \"vehicleCompany\": \"Toyota\",\r\n    \"vehicleModel\": \"Camry\",\r\n    \"chassisNumber\": \"CH1234567890\",\r\n    \"engineNumber\": \"EN9876543210\",\r\n    \"registrationNumber\": \"MH12AB1234\",\r\n    \"registrationDate\": \"2023-05-15\",\r\n    \"registrationValidityDate\": \"2033-05-15\",\r\n    \"ownerName\": \"John Doe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/v1/tracker-manager-service/vehicle?vehicleId=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"tracker-manager-service",
+								"vehicle"
+							],
+							"query": [
+								{
+									"key": "vehicleId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Vehicle",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vehicleType\": \"Sedan\",\r\n    \"vehicleCompany\": \"Toyota\",\r\n    \"vehicleModel\": \"Camry\",\r\n    \"chassisNumber\": \"CH1234567890\",\r\n    \"engineNumber\": \"EN9876543210\",\r\n    \"registrationNumber\": \"MH12AB1234\",\r\n    \"registrationDate\": \"2023-05-15\",\r\n    \"registrationValidityDate\": \"2033-05-15\",\r\n    \"ownerName\": \"John Doe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/v1/tracker-manager-service/vehicle?vehicleId=42",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"tracker-manager-service",
+								"vehicle"
+							],
+							"query": [
+								{
+									"key": "vehicleId",
+									"value": "42"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Fuel Expense",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vehicleId\": 1,\r\n    \"vehicleRegistrationNumber\": \"MH20FY4782\",\r\n    \"fuelFilledDate\": \"2024-03-09\",\r\n    \"quantity\": 40.5,\r\n    \"rate\": 102.75,\r\n    \"amount\": 4161.38,\r\n    \"odometerReading\": 45321,\r\n    \"location\": \"Petrol Pump, New York\",\r\n    \"paymentMode\": \"Credit Card\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/v1/tracker-manager-service/vehicle/fuel-expense",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"tracker-manager-service",
+								"vehicle",
+								"fuel-expense"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Bulk Fuel Expenses",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-02-08\",\r\n        \"quantity\": 4.48,\r\n        \"rate\": 111.64,\r\n        \"amount\": 500,\r\n        \"odometerReading\": 21,\r\n        \"location\": \"Aurangabad, Maharashtra\",\r\n        \"paymentMode\": \"Cash\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-02-08\",\r\n        \"quantity\": 18.81,\r\n        \"rate\": 111.64,\r\n        \"amount\": 2100,\r\n        \"odometerReading\": 21,\r\n        \"location\": \"Aurangabad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-02-11\",\r\n        \"quantity\": 26.43,\r\n        \"rate\": 111.64,\r\n        \"amount\": 2950,\r\n        \"odometerReading\": 181,\r\n        \"location\": \"Aurangabad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-02-20\",\r\n        \"quantity\": 32.05,\r\n        \"rate\": 111.41,\r\n        \"amount\": 3570.69,\r\n        \"odometerReading\": 750,\r\n        \"location\": \"Sillod, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-02-26\",\r\n        \"quantity\": 29.52,\r\n        \"rate\": 111.66,\r\n        \"amount\": 3296.2,\r\n        \"odometerReading\": 1170,\r\n        \"location\": \"Aurangabad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-03-05\",\r\n        \"quantity\": 40.22,\r\n        \"rate\": 116,\r\n        \"amount\": 4665.52,\r\n        \"odometerReading\": 1735,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-03-16\",\r\n        \"quantity\": 34.04,\r\n        \"rate\": 111.62,\r\n        \"amount\": 3800.9,\r\n        \"odometerReading\": 2406,\r\n        \"location\": \"Aurangabad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-03-31\",\r\n        \"quantity\": 32.2,\r\n        \"rate\": 118.04,\r\n        \"amount\": 3800.88,\r\n        \"odometerReading\": 2869,\r\n        \"location\": \"Sillod, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-04-07\",\r\n        \"quantity\": 28.91,\r\n        \"rate\": 121.07,\r\n        \"amount\": 3500,\r\n        \"odometerReading\": 3308,\r\n        \"location\": \"Kannad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-04-10\",\r\n        \"quantity\": 6.56,\r\n        \"rate\": 122.04,\r\n        \"amount\": 800,\r\n        \"odometerReading\": 3552,\r\n        \"location\": \"Talni, Maharashtra\",\r\n        \"paymentMode\": \"Cash\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-04-16\",\r\n        \"quantity\": 24.94,\r\n        \"rate\": 120.31,\r\n        \"amount\": 3000,\r\n        \"odometerReading\": 3921,\r\n        \"location\": \"Chandwad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-04-24\",\r\n        \"quantity\": 24.78,\r\n        \"rate\": 121.07,\r\n        \"amount\": 3000,\r\n        \"odometerReading\": 4382,\r\n        \"location\": \"Kannad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-04-30\",\r\n        \"quantity\": 35.81,\r\n        \"rate\": 125.73,\r\n        \"amount\": 4502.39,\r\n        \"odometerReading\": 4784,\r\n        \"location\": \"Nashik, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-05-06\",\r\n        \"quantity\": 34.97,\r\n        \"rate\": 121.55,\r\n        \"amount\": 4250.6,\r\n        \"odometerReading\": 5300,\r\n        \"location\": \"Aurangabad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-05-08\",\r\n        \"quantity\": 31.7,\r\n        \"rate\": 119.9,\r\n        \"amount\": 3800.83,\r\n        \"odometerReading\": 5750,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Cash\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-05-14\",\r\n        \"quantity\": 37.12,\r\n        \"rate\": 119.9,\r\n        \"amount\": 4450.69,\r\n        \"odometerReading\": 6178,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-05-17\",\r\n        \"quantity\": 24.93,\r\n        \"rate\": 120.29,\r\n        \"amount\": 3000,\r\n        \"odometerReading\": 6805,\r\n        \"location\": \"Kopargaon, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-05-23\",\r\n        \"quantity\": 37.03,\r\n        \"rate\": 113,\r\n        \"amount\": 4184.39,\r\n        \"odometerReading\": 7151,\r\n        \"location\": \"Aurangabad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-05-28\",\r\n        \"quantity\": 37.62,\r\n        \"rate\": 111.17,\r\n        \"amount\": 4182.22,\r\n        \"odometerReading\": 7695,\r\n        \"location\": \"Nagpur, Maharashtra\",\r\n        \"paymentMode\": \"Cash\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-05-31\",\r\n        \"quantity\": 35.33,\r\n        \"rate\": 111.78,\r\n        \"amount\": 3949.18,\r\n        \"odometerReading\": 8252,\r\n        \"location\": \"Kherda, Washim, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-06-11\",\r\n        \"quantity\": 37.62,\r\n        \"rate\": 111.65,\r\n        \"amount\": 4200.27,\r\n        \"odometerReading\": 8835,\r\n        \"location\": \"Lasur, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-06-28\",\r\n        \"quantity\": 30.63,\r\n        \"rate\": 112.97,\r\n        \"amount\": 3460.27,\r\n        \"odometerReading\": 9290,\r\n        \"location\": \"Aurangabad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-07-09\",\r\n        \"quantity\": 37.88,\r\n        \"rate\": 110.88,\r\n        \"amount\": 4200.13,\r\n        \"odometerReading\": 9891,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-07-16\",\r\n        \"quantity\": 39.37,\r\n        \"rate\": 107.95,\r\n        \"amount\": 4249.99,\r\n        \"odometerReading\": 10493,\r\n        \"location\": \"Aurangabad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-07-31\",\r\n        \"quantity\": 39.03,\r\n        \"rate\": 107.62,\r\n        \"amount\": 4200.4,\r\n        \"odometerReading\": 11114,\r\n        \"location\": \"Sillod, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-08-13\",\r\n        \"quantity\": 39.28,\r\n        \"rate\": 106.95,\r\n        \"amount\": 4201,\r\n        \"odometerReading\": 11729,\r\n        \"location\": \"Mehkar, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-09-03\",\r\n        \"quantity\": 38.88,\r\n        \"rate\": 108.03,\r\n        \"amount\": 4200.2,\r\n        \"odometerReading\": 12373,\r\n        \"location\": \"Aurangabad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-09-24\",\r\n        \"quantity\": 38.33,\r\n        \"rate\": 107.02,\r\n        \"amount\": 4102.07,\r\n        \"odometerReading\": 12976,\r\n        \"location\": \"Kannad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-10-15\",\r\n        \"quantity\": 39.08,\r\n        \"rate\": 107.49,\r\n        \"amount\": 4200.7,\r\n        \"odometerReading\": 13679,\r\n        \"location\": \"Phulambri, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-11-01\",\r\n        \"quantity\": 35.59,\r\n        \"rate\": 106.78,\r\n        \"amount\": 3800.65,\r\n        \"odometerReading\": 14235,\r\n        \"location\": \"Nashik, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-11-19\",\r\n        \"quantity\": 39.57,\r\n        \"rate\": 106.23,\r\n        \"amount\": 4203.52,\r\n        \"odometerReading\": 14888,\r\n        \"location\": \"Kopargaon, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-11-26\",\r\n        \"quantity\": 28.06,\r\n        \"rate\": 106.91,\r\n        \"amount\": 3000,\r\n        \"odometerReading\": 15382,\r\n        \"location\": \"Pachora, Maharashtra\",\r\n        \"paymentMode\": \"Cash\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-12-13\",\r\n        \"quantity\": 39.81,\r\n        \"rate\": 108.03,\r\n        \"amount\": 4300.67,\r\n        \"odometerReading\": 15979,\r\n        \"location\": \"Aurangabad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-12-18\",\r\n        \"quantity\": 39.41,\r\n        \"rate\": 106.58,\r\n        \"amount\": 4200.32,\r\n        \"odometerReading\": 16673,\r\n        \"location\": \"Pravarasangam, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-12-27\",\r\n        \"quantity\": 38.99,\r\n        \"rate\": 107.82,\r\n        \"amount\": 4203.9,\r\n        \"odometerReading\": 17342,\r\n        \"location\": \"Sillod, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-12-29\",\r\n        \"quantity\": 40.05,\r\n        \"rate\": 102.36,\r\n        \"amount\": 4099.51,\r\n        \"odometerReading\": 17978,\r\n        \"location\": \"Kolhapur, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-12-30\",\r\n        \"quantity\": 36.38,\r\n        \"rate\": 103.63,\r\n        \"amount\": 3770.05,\r\n        \"odometerReading\": 18599,\r\n        \"location\": \"Khadur, Karnataka\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2022-12-30\",\r\n        \"quantity\": 2.51,\r\n        \"rate\": 103.63,\r\n        \"amount\": 260.11,\r\n        \"odometerReading\": 18601,\r\n        \"location\": \"Khadur, Karnataka\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-01-01\",\r\n        \"quantity\": 40.11,\r\n        \"rate\": 101.72,\r\n        \"amount\": 4079.98,\r\n        \"odometerReading\": 19236,\r\n        \"location\": \"Bijapur, Karnataka\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-01-08\",\r\n        \"quantity\": 38.91,\r\n        \"rate\": 108,\r\n        \"amount\": 4202.28,\r\n        \"odometerReading\": 19857,\r\n        \"location\": \"Aurangabad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-01-26\",\r\n        \"quantity\": 40.19,\r\n        \"rate\": 107.49,\r\n        \"amount\": 4320.02,\r\n        \"odometerReading\": 20516,\r\n        \"location\": \"Phulambri, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-02-05\",\r\n        \"quantity\": 40,\r\n        \"rate\": 107.02,\r\n        \"amount\": 4280.8,\r\n        \"odometerReading\": 21166,\r\n        \"location\": \"Kannad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-02-15\",\r\n        \"quantity\": 38.85,\r\n        \"rate\": 106.06,\r\n        \"amount\": 4120.43,\r\n        \"odometerReading\": 21761,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-02-24\",\r\n        \"quantity\": 39.94,\r\n        \"rate\": 107.67,\r\n        \"amount\": 4300.34,\r\n        \"odometerReading\": 22415,\r\n        \"location\": \"Ghatnandra, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-03-04\",\r\n        \"quantity\": 40.02,\r\n        \"rate\": 107.49,\r\n        \"amount\": 4301.74,\r\n        \"odometerReading\": 23041,\r\n        \"location\": \"Phulambri, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-03-19\",\r\n        \"quantity\": 38,\r\n        \"rate\": 107.75,\r\n        \"amount\": 4094.5,\r\n        \"odometerReading\": 23605,\r\n        \"location\": \"Sillod, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-04-14\",\r\n        \"quantity\": 18.86,\r\n        \"rate\": 106.06,\r\n        \"amount\": 2000,\r\n        \"odometerReading\": 24162,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-04-15\",\r\n        \"quantity\": 18.92,\r\n        \"rate\": 105.7,\r\n        \"amount\": 2000,\r\n        \"odometerReading\": 24403,\r\n        \"location\": \"Panvel, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-04-29\",\r\n        \"quantity\": 23.59,\r\n        \"rate\": 105.98,\r\n        \"amount\": 2500,\r\n        \"odometerReading\": 24680,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-05-11\",\r\n        \"quantity\": 23.43,\r\n        \"rate\": 106.69,\r\n        \"amount\": 2500,\r\n        \"odometerReading\": 24955,\r\n        \"location\": \"Lasur, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-05-14\",\r\n        \"quantity\": 32.98,\r\n        \"rate\": 106.74,\r\n        \"amount\": 3520.28,\r\n        \"odometerReading\": 25306,\r\n        \"location\": \"Sangamner, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-06-10\",\r\n        \"quantity\": 39.16,\r\n        \"rate\": 105.95,\r\n        \"amount\": 4149,\r\n        \"odometerReading\": 25711,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-06-20\",\r\n        \"quantity\": 39,\r\n        \"rate\": 107.67,\r\n        \"amount\": 4200,\r\n        \"odometerReading\": 26253,\r\n        \"location\": \"Ghatnandra, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-07-04\",\r\n        \"quantity\": 24.46,\r\n        \"rate\": 106.31,\r\n        \"amount\": 2600,\r\n        \"odometerReading\": 26846,\r\n        \"location\": \"Mumbai, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-07-21\",\r\n        \"quantity\": 25.51,\r\n        \"rate\": 105.84,\r\n        \"amount\": 2700,\r\n        \"odometerReading\": 27192,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-08-05\",\r\n        \"quantity\": 37.76,\r\n        \"rate\": 105.98,\r\n        \"amount\": 4001.8,\r\n        \"odometerReading\": 27481,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-08-23\",\r\n        \"quantity\": 37.74,\r\n        \"rate\": 105.98,\r\n        \"amount\": 4000,\r\n        \"odometerReading\": 27946,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-09-30\",\r\n        \"quantity\": 28.31,\r\n        \"rate\": 105.98,\r\n        \"amount\": 3000.29,\r\n        \"odometerReading\": 28259,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-10-09\",\r\n        \"quantity\": 28.35,\r\n        \"rate\": 105.83,\r\n        \"amount\": 3000,\r\n        \"odometerReading\": 28860,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-11-14\",\r\n        \"quantity\": 37.15,\r\n        \"rate\": 107.67,\r\n        \"amount\": 4000,\r\n        \"odometerReading\": 29320,\r\n        \"location\": \"Ghatnandra, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-11-18\",\r\n        \"quantity\": 18.81,\r\n        \"rate\": 106.27,\r\n        \"amount\": 2000,\r\n        \"odometerReading\": 29851,\r\n        \"location\": \"Kopargaon, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-11-26\",\r\n        \"quantity\": 9.45,\r\n        \"rate\": 105.82,\r\n        \"amount\": 1000,\r\n        \"odometerReading\": 30176,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-12-22\",\r\n        \"quantity\": 18.87,\r\n        \"rate\": 106.01,\r\n        \"amount\": 2000,\r\n        \"odometerReading\": 30302,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2023-12-25\",\r\n        \"quantity\": 37.74,\r\n        \"rate\": 106.07,\r\n        \"amount\": 4003.08,\r\n        \"odometerReading\": 30548,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-01-01\",\r\n        \"quantity\": 24.67,\r\n        \"rate\": 106.21,\r\n        \"amount\": 2620.2,\r\n        \"odometerReading\": 30947,\r\n        \"location\": \"Kopargaon, Maharashtra\",\r\n        \"paymentMode\": \"Cash\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-01-18\",\r\n        \"quantity\": 23.58,\r\n        \"rate\": 106.01,\r\n        \"amount\": 2500,\r\n        \"odometerReading\": 31414,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-01-27\",\r\n        \"quantity\": 28.1,\r\n        \"rate\": 106.77,\r\n        \"amount\": 3000,\r\n        \"odometerReading\": 31736,\r\n        \"location\": \"Sinner, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-02-14\",\r\n        \"quantity\": 37.74,\r\n        \"rate\": 106.01,\r\n        \"amount\": 4000.81,\r\n        \"odometerReading\": 32168,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-03-27\",\r\n        \"quantity\": 26.86,\r\n        \"rate\": 103.92,\r\n        \"amount\": 2791.29,\r\n        \"odometerReading\": 32501,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-03-31\",\r\n        \"quantity\": 14.19,\r\n        \"rate\": 105.74,\r\n        \"amount\": 1500,\r\n        \"odometerReading\": 33080,\r\n        \"location\": \"Sillod, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-04-08\",\r\n        \"quantity\": 14.2,\r\n        \"rate\": 105.59,\r\n        \"amount\": 1500,\r\n        \"odometerReading\": 33265,\r\n        \"location\": \"Ghatnandra, Maharashtra\",\r\n        \"paymentMode\": \"Cash\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-04-09\",\r\n        \"quantity\": 28.54,\r\n        \"rate\": 105.12,\r\n        \"amount\": 3000,\r\n        \"odometerReading\": 33425,\r\n        \"location\": \"Aurangabad, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-05-01\",\r\n        \"quantity\": 38.5,\r\n        \"rate\": 103.92,\r\n        \"amount\": 4000.92,\r\n        \"odometerReading\": 33885,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-05-18\",\r\n        \"quantity\": 14.43,\r\n        \"rate\": 103.92,\r\n        \"amount\": 1500,\r\n        \"odometerReading\": 34362,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-05-23\",\r\n        \"quantity\": 38.39,\r\n        \"rate\": 104.48,\r\n        \"amount\": 4010.99,\r\n        \"odometerReading\": 34566,\r\n        \"location\": \"Alephata, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-05-24\",\r\n        \"quantity\": 33.38,\r\n        \"rate\": 104.86,\r\n        \"amount\": 3500,\r\n        \"odometerReading\": 35159,\r\n        \"location\": \"Amravati, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-06-08\",\r\n        \"quantity\": 19.2,\r\n        \"rate\": 104.15,\r\n        \"amount\": 2000,\r\n        \"odometerReading\": 35544,\r\n        \"location\": \"Kopargaon, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-06-16\",\r\n        \"quantity\": 28.85,\r\n        \"rate\": 103.98,\r\n        \"amount\": 3000,\r\n        \"odometerReading\": 35915,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-07-13\",\r\n        \"quantity\": 35.16,\r\n        \"rate\": 103.87,\r\n        \"amount\": 3652.06,\r\n        \"odometerReading\": 36274,\r\n        \"location\": \"Ahmednagar, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-07-23\",\r\n        \"quantity\": 38.44,\r\n        \"rate\": 104.13,\r\n        \"amount\": 4002.75,\r\n        \"odometerReading\": 36811,\r\n        \"location\": \"Kopargaon, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-08-16\",\r\n        \"quantity\": 24.06,\r\n        \"rate\": 103.92,\r\n        \"amount\": 2500,\r\n        \"odometerReading\": 37301,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-09-20\",\r\n        \"quantity\": 23.09,\r\n        \"rate\": 103.92,\r\n        \"amount\": 2400,\r\n        \"odometerReading\": 37556,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-10-02\",\r\n        \"quantity\": 21.17,\r\n        \"rate\": 103.92,\r\n        \"amount\": 2200,\r\n        \"odometerReading\": 37873,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-10-31\",\r\n        \"quantity\": 22.12,\r\n        \"rate\": 103.98,\r\n        \"amount\": 2300,\r\n        \"odometerReading\": 38066,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-12-08\",\r\n        \"quantity\": 22.12,\r\n        \"rate\": 103.98,\r\n        \"amount\": 2300,\r\n        \"odometerReading\": 38381,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-12-25\",\r\n        \"quantity\": 36.65,\r\n        \"rate\": 104.74,\r\n        \"amount\": 3838.721,\r\n        \"odometerReading\": 38734,\r\n        \"location\": \"Vadavali, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-12-26\",\r\n        \"quantity\": 35.04,\r\n        \"rate\": 95.6,\r\n        \"amount\": 3349.824,\r\n        \"odometerReading\": 39325,\r\n        \"location\": \"Shamlapur, Gujarat\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-12-28\",\r\n        \"quantity\": 35.88,\r\n        \"rate\": 104.74,\r\n        \"amount\": 3758.0712,\r\n        \"odometerReading\": 39833,\r\n        \"location\": \"Tolamal, Rajasthan\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-12-30\",\r\n        \"quantity\": 37.65,\r\n        \"rate\": 106.25,\r\n        \"amount\": 4000.3125,\r\n        \"odometerReading\": 40432,\r\n        \"location\": \"Milawali, Uttar Pradesh\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2024-12-31\",\r\n        \"quantity\": 37.54,\r\n        \"rate\": 106.91,\r\n        \"amount\": 4013.4014,\r\n        \"odometerReading\": 41040,\r\n        \"location\": \"Manpur, Madhya Pradesh\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2025-01-18\",\r\n        \"quantity\": 34.93,\r\n        \"rate\": 103.98,\r\n        \"amount\": 3632.0214,\r\n        \"odometerReading\": 41611,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2025-01-21\",\r\n        \"quantity\": 14.32,\r\n        \"rate\": 104.75,\r\n        \"amount\": 1500.02,\r\n        \"odometerReading\": 42059,\r\n        \"location\": \"Dhodi, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    },\r\n    {\r\n        \"vehicleId\": 1,\r\n        \"fuelFilledDate\": \"2025-03-03\",\r\n        \"quantity\": 14.43,\r\n        \"rate\": 103.98,\r\n        \"amount\": 1500.43,\r\n        \"odometerReading\": 42059,\r\n        \"location\": \"Pune, Maharashtra\",\r\n        \"paymentMode\": \"Credit Card\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/v1/tracker-manager-service/vehicle/bulk-fuel-expense",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"tracker-manager-service",
+								"vehicle",
+								"bulk-fuel-expense"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Fuel Expense",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vehicleType\": \"Sedan\",\r\n    \"vehicleCompany\": \"Toyota\",\r\n    \"vehicleModel\": \"Camry\",\r\n    \"chassisNumber\": \"CH1234567890\",\r\n    \"engineNumber\": \"EN9876543210\",\r\n    \"registrationNumber\": \"MH12AB1234\",\r\n    \"registrationDate\": \"2023-05-15\",\r\n    \"registrationValidityDate\": \"2033-05-15\",\r\n    \"ownerName\": \"John Doe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/v1/tracker-manager-service/vehicle/all-fuel-expense",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"tracker-manager-service",
+								"vehicle",
+								"all-fuel-expense"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Fuel Expense",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vehicleType\": \"Sedan\",\r\n    \"vehicleCompany\": \"Toyota\",\r\n    \"vehicleModel\": \"Camry\",\r\n    \"chassisNumber\": \"CH1234567890\",\r\n    \"engineNumber\": \"EN9876543210\",\r\n    \"registrationNumber\": \"MH12AB1234\",\r\n    \"registrationDate\": \"2023-05-15\",\r\n    \"registrationValidityDate\": \"2033-05-15\",\r\n    \"ownerName\": \"John Doe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/v1/tracker-manager-service/vehicle/fuel-expense?vehicleId=11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"tracker-manager-service",
+								"vehicle",
+								"fuel-expense"
+							],
+							"query": [
+								{
+									"key": "vehicleId",
+									"value": "11"
+								},
+								{
+									"key": "registrationNumber",
+									"value": "MH20FY4782",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Nifty 50 Stock Data",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vehicleType\": \"Sedan\",\r\n    \"vehicleCompany\": \"Toyota\",\r\n    \"vehicleModel\": \"Camry\",\r\n    \"chassisNumber\": \"CH1234567890\",\r\n    \"engineNumber\": \"EN9876543210\",\r\n    \"registrationNumber\": \"MH12AB1234\",\r\n    \"registrationDate\": \"2023-05-15\",\r\n    \"registrationValidityDate\": \"2033-05-15\",\r\n    \"ownerName\": \"John Doe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8069/api/v1/tracker-manager-service/stock/nifty-50-data?index=NIFTY%2050",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8069",
+							"path": [
+								"api",
+								"v1",
+								"tracker-manager-service",
+								"stock",
+								"nifty-50-data"
+							],
+							"query": [
+								{
+									"key": "index",
+									"value": "NIFTY%2050"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "External API",
+			"item": [
+				{
+					"name": "Nifty 50 Stocks",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer $ACCESS_TOKEN"
+							}
+						],
+						"url": {
+							"raw": "https://www.nseindia.com/api/equity-stockIndices?index=NIFTY%2050",
+							"protocol": "https",
+							"host": [
+								"www",
+								"nseindia",
+								"com"
+							],
+							"path": [
+								"api",
+								"equity-stockIndices"
+							],
+							"query": [
+								{
+									"key": "index",
+									"value": "NIFTY%2050"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
