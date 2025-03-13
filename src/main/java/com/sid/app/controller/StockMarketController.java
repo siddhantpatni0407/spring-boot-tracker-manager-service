@@ -21,7 +21,7 @@ import reactor.core.publisher.Mono;
  */
 @RestController
 @Slf4j
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 public class StockMarketController {
 
     @Autowired
