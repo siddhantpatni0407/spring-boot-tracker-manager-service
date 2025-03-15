@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
-
 @RestController
 @Slf4j
 @CrossOrigin
@@ -78,6 +76,19 @@ public class AuthController {
     public ResponseEntity<ResponseDTO<Void>> resetPassword(@Valid @RequestBody ForgotPasswordResetRequest request) {
         log.info("Received password reset request for email: {}", request.getEmail());
         return authService.resetPassword(request);
+    }
+
+    @PostMapping(AppConstants.LOGIN_REQUEST_OTP_ENDPOINT)
+    public ResponseEntity<ResponseDTO<Void>> requestLoginOtp(@RequestBody LoginRequest request) {
+        log.info("Received login OTP request for email: {}", request.getEmail());
+        return authService.sendOtpForLogin(request.getEmail());
+    }
+
+    // In AuthController.java
+    @PostMapping(AppConstants.VERIFY_OTP_ENDPOINT)
+    public ResponseEntity<AuthResponse> verifyOtp(@Valid @RequestBody ForgotPasswordOtpRequest request) {
+        log.info("Verifying OTP for email: {}", request.getEmail());
+        return authService.verifyOtp(request.getEmail(), request.getOtp());
     }
 
 }
