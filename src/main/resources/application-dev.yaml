@@ -50,6 +50,22 @@ spring:
           lob:
             non_contextual_creation: true  # Prevents unnecessary warnings for BLOB fields
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: siddhantpatni04@gmail.com
+    password: your-email-password
+    email-subject : Tracker Manager Service Password Reset OTP
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
 stock-market:
   nifty-50:
     url: https://www.nseindia.com/api/equity-stockIndices

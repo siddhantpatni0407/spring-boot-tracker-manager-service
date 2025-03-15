@@ -10,6 +10,9 @@ public class AppConstants {
      */
     public static final String USER_REGISTER_ENDPOINT = "/api/v1/tracker-manager-service/user/register";
     public static final String USER_LOGIN_ENDPOINT = "/api/v1/tracker-manager-service/user/login";
+    public static final String FORGOT_PASSWORD_REQUEST_OTP_ENDPOINT = "/api/v1/tracker-manager-service/forgot-password/request-otp";
+    public static final String FORGOT_PASSWORD_RESET_ENDPOINT = "/api/v1/tracker-manager-service/forgot-password/reset";
+
     public static final String VEHICLE_REGISTER_ENDPOINT = "/api/v1/tracker-manager-service/vehicle/register";
     public static final String VEHICLE_BULK_REGISTER_ENDPOINT = "/api/v1/tracker-manager-service/vehicle/bulk-register";
     public static final String FETCH_ALL_VEHICLES_ENDPOINT = "/api/v1/tracker-manager-service/vehicle/fetch";

@@ -13,6 +13,12 @@ public class AppProperties {
     @Value("${stock-market.nifty-50.url}")
     private String nifty50URL;
 
+    @Value("${spring.mail.username}")
+    private String fromEmail;
+
+    @Value("${spring.mail.email-subject}")
+    private String emailSubject;
+
     @Value("${webclient.config.memory-buffer-size}")
     private int bufferSize;
 
