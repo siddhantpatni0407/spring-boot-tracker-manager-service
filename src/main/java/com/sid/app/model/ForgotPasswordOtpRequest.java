@@ -14,4 +14,6 @@ public class ForgotPasswordOtpRequest {
 
     private String email;
 
+    private String otp;
+
 }

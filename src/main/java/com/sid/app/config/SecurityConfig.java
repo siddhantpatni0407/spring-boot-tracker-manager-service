@@ -26,6 +26,7 @@ public class SecurityConfig {
                         .pathMatchers(
                                 AppConstants.USER_REGISTER_ENDPOINT,
                                 AppConstants.USER_LOGIN_ENDPOINT,
+                                AppConstants.LOGIN_REQUEST_OTP_ENDPOINT,
                                 AppConstants.VEHICLE_REGISTER_ENDPOINT,
                                 AppConstants.VEHICLE_BULK_REGISTER_ENDPOINT,
                                 AppConstants.VEHICLE_ENDPOINT,
@@ -37,9 +38,11 @@ public class SecurityConfig {
                                 AppConstants.VEHICLE_FUEL_BULK_EXPENSE_ENDPOINT,
                                 AppConstants.STOCK_NIFTY_50_DATA_ENDPOINT,
                                 AppConstants.FORGOT_PASSWORD_REQUEST_OTP_ENDPOINT,
-                                AppConstants.FORGOT_PASSWORD_RESET_ENDPOINT
+                                AppConstants.FORGOT_PASSWORD_RESET_ENDPOINT,
+                                AppConstants.VERIFY_OTP_ENDPOINT
                         ).permitAll()
-                        .anyExchange().authenticated()
+                        .anyExchange()
+                        .authenticated()
                 )
                 .build();
     }

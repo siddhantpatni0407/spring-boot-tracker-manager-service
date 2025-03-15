@@ -12,6 +12,7 @@ import com.sid.app.repository.UserRepository;
 import com.sid.app.utils.AESUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -167,6 +168,54 @@ public class AuthService {
             log.error("Error encrypting password: {}", e.getMessage());
             return ResponseEntity.internalServerError().body(new ResponseDTO<>(AppConstants.STATUS_FAILED, "An error occurred while resetting password.", null));
         }
+    }
+
+    public ResponseEntity<ResponseDTO<Void>> sendOtpForLogin(String email) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+
+        if (userOptional.isEmpty()) {
+            log.warn("Login OTP request failed: User not found for email {}", email);
+            return ResponseEntity.status(404).body(new ResponseDTO<>("FAILED", "User not found.", null));
+        }
+
+        // Generate a 6-digit OTP
+        String otp = String.format("%06d", new Random().nextInt(999999));
+        otpStore.put(email, otp);
+
+        // Send OTP via email
+        emailService.sendOtpEmail(email, otp);
+        log.info("Login OTP sent successfully to {}", email);
+
+        return ResponseEntity.ok(new ResponseDTO<>(AppConstants.STATUS_SUCCESS, "OTP sent successfully to your email.", null));
+    }
+
+    public ResponseEntity<AuthResponse> verifyOtp(String email, String otp) {
+        if (!otpStore.containsKey(email) || !otpStore.get(email).equals(otp)) {
+            log.warn("Invalid OTP attempt for email: {}", email);
+            return ResponseEntity.badRequest()
+                    .body(new AuthResponse(null, null, AppConstants.STATUS_FAILED, "Invalid OTP."));
+        }
+
+        // OTP verified successfully, remove from store
+        otpStore.remove(email);
+
+        // Fetch user details
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        if (optionalUser.isEmpty()) {
+            log.warn("OTP verification failed: User not found for email {}", email);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new AuthResponse(null, null, AppConstants.STATUS_FAILED, "User not found."));
+        }
+
+        User user = optionalUser.get();
+
+        // Generate JWT token
+        String token = jwtUtil.generateToken(user.getEmail());
+
+        log.info("OTP verified successfully. Login successful for email: {}", email);
+
+        return ResponseEntity.ok(
+                new AuthResponse(token, user.getRole(), AppConstants.STATUS_SUCCESS, "OTP Login Successful."));
     }
 
 }
