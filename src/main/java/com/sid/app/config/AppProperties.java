@@ -19,6 +19,9 @@ public class AppProperties {
     @Value("${spring.mail.email-subject}")
     private String emailSubject;
 
+    @Value("${spring.mail.email-body}")
+    private String emailBody;
+
     @Value("${webclient.config.memory-buffer-size}")
     private int bufferSize;
 
