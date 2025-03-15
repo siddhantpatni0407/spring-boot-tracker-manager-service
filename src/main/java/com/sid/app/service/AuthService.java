@@ -6,14 +6,19 @@ import com.sid.app.entity.User;
 import com.sid.app.model.AuthResponse;
 import com.sid.app.model.LoginRequest;
 import com.sid.app.model.RegisterRequest;
+import com.sid.app.model.ForgotPasswordResetRequest;
+import com.sid.app.model.ResponseDTO;
 import com.sid.app.repository.UserRepository;
 import com.sid.app.utils.AESUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 @RequiredArgsConstructor
@@ -21,8 +26,11 @@ import java.util.Optional;
 public class AuthService {
 
     private final UserRepository userRepository;
+    private final EmailService emailService;
     private final JwtUtil jwtUtil;
     private final BCryptPasswordEncoder passwordEncoder;
+
+    private static final ConcurrentHashMap<String, String> otpStore = new ConcurrentHashMap<>();
 
     public AuthResponse register(RegisterRequest request) {
         log.info("Checking if email {} or mobile {} already exists", request.getEmail(), request.getMobileNumber());
@@ -97,6 +105,68 @@ public class AuthService {
         log.info("login() : Login successful for email: {}", request.getEmail());
 
         return new AuthResponse(token, user.getRole(), AppConstants.STATUS_SUCCESS, AppConstants.LOGIN_SUCCESSFUL_MESSAGE);
+    }
+
+    /**
+     * Sends OTP to user's email for password reset
+     *
+     * @param email User's registered email
+     * @return ResponseEntity<ResponseDTO < Void>>
+     */
+    public ResponseEntity<ResponseDTO<Void>> sendOtpForPasswordReset(String email) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+
+        if (userOptional.isEmpty()) {
+            log.warn("User not found for email: {}", email);
+            return ResponseEntity.status(404).body(new ResponseDTO<>("FAILED", "User not found.", null));
+        }
+
+        // Generate a 6-digit OTP
+        String otp = String.format("%06d", new Random().nextInt(999999));
+        otpStore.put(email, otp);
+
+        // Send OTP via email
+        emailService.sendOtpEmail(email, otp);
+        log.info("OTP sent successfully to {}", email);
+
+        return ResponseEntity.ok(new ResponseDTO<>(AppConstants.STATUS_SUCCESS, "OTP sent successfully to your email.", null));
+    }
+
+    /**
+     * Resets user password using OTP
+     *
+     * @param request ForgotPasswordResetRequest
+     * @return ResponseEntity<ResponseDTO < Void>>
+     */
+    public ResponseEntity<ResponseDTO<Void>> resetPassword(ForgotPasswordResetRequest request) {
+        String email = request.getEmail();
+        String otp = request.getOtp();
+        String newPassword = request.getNewPassword();
+
+        // Validate OTP
+        if (!otpStore.containsKey(email) || !otpStore.get(email).equals(otp)) {
+            log.warn("Invalid OTP attempt for email: {}", email);
+            return ResponseEntity.badRequest().body(new ResponseDTO<>(AppConstants.STATUS_FAILED, "Invalid OTP.", null));
+        }
+
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if (userOptional.isEmpty()) {
+            log.warn("User not found for email: {}", email);
+            return ResponseEntity.status(404).body(new ResponseDTO<>(AppConstants.STATUS_FAILED, "User not found.", null));
+        }
+
+        // Encrypt new password and update user record
+        User user = userOptional.get();
+        try {
+            user.setPassword(AESUtils.encrypt(newPassword));
+            userRepository.save(user);
+            otpStore.remove(email);
+            log.info("Password reset successfully for {}", email);
+            return ResponseEntity.ok(new ResponseDTO<>(AppConstants.STATUS_SUCCESS, "Password reset successful.", null));
+        } catch (Exception e) {
+            log.error("Error encrypting password: {}", e.getMessage());
+            return ResponseEntity.internalServerError().body(new ResponseDTO<>(AppConstants.STATUS_FAILED, "An error occurred while resetting password.", null));
+        }
     }
 
 }

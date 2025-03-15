@@ -4,8 +4,12 @@ import com.sid.app.constants.AppConstants;
 import com.sid.app.model.AuthResponse;
 import com.sid.app.model.LoginRequest;
 import com.sid.app.model.RegisterRequest;
+import com.sid.app.model.ForgotPasswordOtpRequest;
+import com.sid.app.model.ForgotPasswordResetRequest;
+import com.sid.app.model.ResponseDTO;
 import com.sid.app.service.AuthService;
 import com.sid.app.utils.ApplicationUtils;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +18,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 @RestController
 @Slf4j
@@ -48,6 +54,30 @@ public class AuthController {
             log.warn("login() : Login failed for user: {} - Reason: {}", request.getEmail(), response.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response); // ✅ 401 Unauthorized
         }
+    }
+
+    /**
+     * Request OTP for password reset
+     *
+     * @param request Contains user email
+     * @return ResponseEntity<ResponseDTO < Void>>
+     */
+    @PostMapping(AppConstants.FORGOT_PASSWORD_REQUEST_OTP_ENDPOINT)
+    public ResponseEntity<ResponseDTO<Void>> requestOtp(@Valid @RequestBody ForgotPasswordOtpRequest request) {
+        log.info("Received OTP request for email: {}", request.getEmail());
+        return authService.sendOtpForPasswordReset(request.getEmail());
+    }
+
+    /**
+     * Reset Password using OTP
+     *
+     * @param request Contains email, OTP, and new password
+     * @return ResponseEntity<ResponseDTO < Void>>
+     */
+    @PostMapping(AppConstants.FORGOT_PASSWORD_RESET_ENDPOINT)
+    public ResponseEntity<ResponseDTO<Void>> resetPassword(@Valid @RequestBody ForgotPasswordResetRequest request) {
+        log.info("Received password reset request for email: {}", request.getEmail());
+        return authService.resetPassword(request);
     }
 
 }
