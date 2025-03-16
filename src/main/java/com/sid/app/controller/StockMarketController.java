@@ -35,7 +35,7 @@ public class StockMarketController {
      * @param index The stock index (e.g., "NIFTY 50").
      * @return ResponseEntity containing the response status, message, and stock data.
      */
-    @GetMapping(AppConstants.STOCK_NIFTY_50_DATA_ENDPOINT)
+    @GetMapping(AppConstants.STOCK_NIFTY_STOCK_DATA_ENDPOINT)
     public Mono<ResponseEntity<ResponseDTO<StockResponseDTO>>> getStockData(@RequestParam String index) {
         log.info(AppConstants.METHOD_GET_STOCK_DATA + AppConstants.FLOW_START);
         log.info(AppConstants.METHOD_GET_STOCK_DATA + AppConstants.LOG_REQUEST_FETCH_STOCK_DATA, index);

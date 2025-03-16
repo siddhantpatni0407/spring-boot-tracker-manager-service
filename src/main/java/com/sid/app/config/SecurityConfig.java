@@ -36,7 +36,7 @@ public class SecurityConfig {
                                 AppConstants.VEHICLE_ALL_FUEL_EXPENSE_ENDPOINT,
                                 AppConstants.VEHICLE_FUEL_EXPENSE_ENDPOINT,
                                 AppConstants.VEHICLE_FUEL_BULK_EXPENSE_ENDPOINT,
-                                AppConstants.STOCK_NIFTY_50_DATA_ENDPOINT,
+                                AppConstants.STOCK_NIFTY_STOCK_DATA_ENDPOINT,
                                 AppConstants.FORGOT_PASSWORD_REQUEST_OTP_ENDPOINT,
                                 AppConstants.FORGOT_PASSWORD_RESET_ENDPOINT,
                                 AppConstants.VERIFY_OTP_ENDPOINT
