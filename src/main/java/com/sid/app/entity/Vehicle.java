@@ -8,6 +8,9 @@ import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +21,7 @@ import lombok.EqualsAndHashCode;
 import java.time.LocalDate;
 
 /**
- * @author Siddhant Patni
+ * Author: Siddhant Patni
  */
 @Entity
 @Table(name = "vehicle", uniqueConstraints = {
@@ -65,5 +68,10 @@ public class Vehicle extends Auditable {
 
     @Column(name = "owner_name", nullable = false)
     private String ownerName;
+
+    // Many-to-one relationship with User entity
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
 }

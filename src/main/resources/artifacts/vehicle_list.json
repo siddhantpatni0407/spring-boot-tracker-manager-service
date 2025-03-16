@@ -1,0 +1,45 @@
+{
+"select * from dev.vehicle": [
+	{
+		"vehicle_id" : 3,
+		"vehicle_type" : "Bike",
+		"vehicle_company" : "TVS",
+		"vehicle_model" : "Jupiter 125",
+		"chassis_number" : "CD645784236",
+		"engine_number" : "EN9876543210",
+		"registration_number" : "MH20HA7558",
+		"registration_date" : "2024-10-25",
+		"registration_validity_date" : "2039-10-25",
+		"owner_name" : "Siddhant Patni",
+		"created_date" : "2025-03-09T01:49:56.682Z",
+		"modified_date" : "2025-03-09T01:49:56.682Z"
+	},
+	{
+		"vehicle_id" : 4,
+		"vehicle_type" : "Bike",
+		"vehicle_company" : "Bajaj",
+		"vehicle_model" : "Discover 125",
+		"chassis_number" : "CD57468658685",
+		"engine_number" : "EDN758784565",
+		"registration_number" : "MH20CX9847",
+		"registration_date" : "2013-10-13",
+		"registration_validity_date" : "2028-10-13",
+		"owner_name" : "Ajit Patni",
+		"created_date" : "2025-03-09T02:06:08.113Z",
+		"modified_date" : "2025-03-09T13:11:40.855Z"
+	},
+	{
+		"vehicle_id" : 1,
+		"vehicle_type" : "Car",
+		"vehicle_company" : "Hyundai",
+		"vehicle_model" : "i20",
+		"chassis_number" : "CD24985642398569",
+		"engine_number" : "EN56w498562938",
+		"registration_number" : "MH20FY4782",
+		"registration_date" : "2022-02-08",
+		"registration_validity_date" : "2037-02-08",
+		"owner_name" : "Siddhant Ajit Patni",
+		"created_date" : "2025-03-09T00:19:59.015Z",
+		"modified_date" : "2025-03-12T11:30:46.020Z"
+	}
+]}

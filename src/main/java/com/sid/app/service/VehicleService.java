@@ -1,7 +1,9 @@
 package com.sid.app.service;
 
+import com.sid.app.entity.User;
 import com.sid.app.entity.Vehicle;
 import com.sid.app.model.VehicleDTO;
+import com.sid.app.repository.UserRepository;
 import com.sid.app.repository.VehicleRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
@@ -29,16 +31,24 @@ public class VehicleService {
     @Autowired
     private VehicleRepository vehicleRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     /**
-     * Registers a new vehicle.
+     * Register a new vehicle and save it in the database.
      *
-     * @param vehicleDTO The vehicle details.
-     * @return The registered vehicle details.
+     * @param vehicleDTO VehicleDTO
+     * @return VehicleDTO
+     * @throws EntityExistsException if the vehicle already exists.
      */
     @Transactional
-    public VehicleDTO registerVehicle(VehicleDTO vehicleDTO) {
+    public VehicleDTO registerVehicle(VehicleDTO vehicleDTO) throws EntityExistsException {
         log.info("registerVehicle() : Registering a new vehicle with chassis number: {} and registration number: {}",
                 vehicleDTO.getChassisNumber(), vehicleDTO.getRegistrationNumber());
+
+        // Fetch the User entity based on the userId
+        User user = userRepository.findById(vehicleDTO.getUserId())
+                .orElseThrow(() -> new EntityExistsException("User not found with ID: " + vehicleDTO.getUserId()));
 
         // Check if the vehicle already exists by chassis number or registration number
         Optional<Vehicle> existingVehicle = vehicleRepository.findByChassisNumberOrRegistrationNumber(
@@ -50,7 +60,7 @@ public class VehicleService {
             throw new EntityExistsException("Vehicle already registered with the given details.");
         }
 
-        // Save new vehicle details
+        // Save new vehicle details with the User entity
         Vehicle vehicle = Vehicle.builder()
                 .vehicleType(vehicleDTO.getVehicleType())
                 .vehicleCompany(vehicleDTO.getVehicleCompany())
@@ -61,6 +71,7 @@ public class VehicleService {
                 .registrationValidityDate(vehicleDTO.getRegistrationValidityDate())
                 .registrationNumber(vehicleDTO.getRegistrationNumber())
                 .ownerName(vehicleDTO.getOwnerName())
+                .user(user)  // Set the User entity
                 .build();
 
         Vehicle savedVehicle = vehicleRepository.save(vehicle);
@@ -77,6 +88,10 @@ public class VehicleService {
             log.info("registerVehicles() : Processing vehicle with chassis number: {} and registration number: {}",
                     vehicleDTO.getChassisNumber(), vehicleDTO.getRegistrationNumber());
 
+            // Fetch the User entity based on the userId in the vehicleDTO
+            User user = userRepository.findById(vehicleDTO.getUserId())
+                    .orElseThrow(() -> new EntityExistsException("User not found with ID: " + vehicleDTO.getUserId()));
+
             // Check if the vehicle already exists
             Optional<Vehicle> existingVehicle = vehicleRepository.findByChassisNumberOrRegistrationNumber(
                     vehicleDTO.getChassisNumber(), vehicleDTO.getRegistrationNumber());
@@ -87,7 +102,7 @@ public class VehicleService {
                 continue; // Skip duplicate vehicle
             }
 
-            // Save new vehicle details
+            // Save new vehicle details with the User entity
             Vehicle vehicle = Vehicle.builder()
                     .vehicleType(vehicleDTO.getVehicleType())
                     .vehicleCompany(vehicleDTO.getVehicleCompany())
@@ -98,6 +113,7 @@ public class VehicleService {
                     .registrationValidityDate(vehicleDTO.getRegistrationValidityDate())
                     .registrationNumber(vehicleDTO.getRegistrationNumber())
                     .ownerName(vehicleDTO.getOwnerName())
+                    .user(user) // Set the User entity
                     .build();
 
             Vehicle savedVehicle = vehicleRepository.save(vehicle);
@@ -126,7 +142,33 @@ public class VehicleService {
 
         log.info("getAllVehicles() : Total vehicles found: {}", vehicleList.size());
 
+        // Include the userId in the VehicleDTO
         return vehicleList.stream()
+                .map(vehicle -> {
+                    VehicleDTO vehicleDTO = mapToDTO(vehicle);
+                    // Ensure userId is mapped correctly (can be added as part of the DTO mapping logic)
+                    vehicleDTO.setUserId(vehicle.getUser().getUserId());
+                    return vehicleDTO;
+                })
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public List<VehicleDTO> getVehiclesByUserId(Long userId) {
+        log.info("getVehiclesByUserId() : Fetching vehicles for user with ID: {}", userId);
+
+        // Fetch vehicles associated with the userId
+        List<Vehicle> vehicles = vehicleRepository.findByUser_UserId(userId);
+
+        if (vehicles.isEmpty()) {
+            log.warn("getVehiclesByUserId() : No vehicles found for user with ID: {}", userId);
+            return Collections.emptyList(); // Return an empty list if no vehicles found
+        }
+
+        log.info("getVehiclesByUserId() : Total vehicles found for user with ID {}: {}", userId, vehicles.size());
+
+        // Map entities to DTOs and return
+        return vehicles.stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
     }
@@ -150,7 +192,11 @@ public class VehicleService {
         Vehicle vehicle = optionalVehicle.get();
         log.info("getVehicleDetails() : Vehicle details retrieved successfully for ID: {}", vehicleId);
 
-        return mapToDTO(vehicle);
+        // Ensure userId is included in the DTO
+        VehicleDTO vehicleDTO = mapToDTO(vehicle);
+        vehicleDTO.setUserId(vehicle.getUser().getUserId()); // Add the userId
+
+        return vehicleDTO;
     }
 
     @Transactional
@@ -160,6 +206,7 @@ public class VehicleService {
         Vehicle vehicle = vehicleRepository.findById(vehicleDTO.getVehicleId())
                 .orElseThrow(() -> new EntityNotFoundException("Vehicle not found with ID: " + vehicleDTO.getVehicleId()));
 
+        // Update the vehicle's details
         vehicle.setVehicleType(vehicleDTO.getVehicleType());
         vehicle.setVehicleCompany(vehicleDTO.getVehicleCompany());
         vehicle.setVehicleModel(vehicleDTO.getVehicleModel());
@@ -170,10 +217,15 @@ public class VehicleService {
         vehicle.setRegistrationNumber(vehicleDTO.getRegistrationNumber());
         vehicle.setOwnerName(vehicleDTO.getOwnerName());
 
+        // Save the updated vehicle to the database
         Vehicle updatedVehicle = vehicleRepository.save(vehicle);
         log.info("updateVehicle() : Vehicle updated successfully with ID: {}", updatedVehicle.getVehicleId());
 
-        return mapToDTO(updatedVehicle);
+        // Include userId in the DTO
+        VehicleDTO updatedVehicleDTO = mapToDTO(updatedVehicle);
+        updatedVehicleDTO.setUserId(updatedVehicle.getUser().getUserId()); // Add the userId to the DTO
+
+        return updatedVehicleDTO;
     }
 
     /**
@@ -185,32 +237,42 @@ public class VehicleService {
     public void deleteVehicle(Long vehicleId) {
         log.info("deleteVehicle() : Checking if vehicle with ID {} exists before deletion.", vehicleId);
 
+        // Check if the vehicle exists in the repository
         if (!vehicleRepository.existsById(vehicleId)) {
             log.warn("deleteVehicle() : Vehicle with ID {} not found, cannot delete.", vehicleId);
             throw new EntityNotFoundException("Vehicle not found with ID: " + vehicleId);
         }
 
+        // Get the vehicle details before deletion (to log user information)
+        Vehicle vehicle = vehicleRepository.findById(vehicleId)
+                .orElseThrow(() -> new EntityNotFoundException("Vehicle not found with ID: " + vehicleId));
+
+        // Log the user associated with the vehicle
+        log.info("deleteVehicle() : Vehicle belongs to user with ID: {}", vehicle.getUser().getUserId());
+
+        // Delete the vehicle
         vehicleRepository.deleteById(vehicleId);
         log.info("deleteVehicle() : Vehicle with ID {} deleted successfully.", vehicleId);
     }
 
     /**
-     * Maps a Vehicle entity to a VehicleDTO.
+     * Converts a Vehicle entity to a VehicleDTO.
      *
-     * @param vehicle The Vehicle entity.
-     * @return The corresponding VehicleDTO.
+     * @param vehicle Vehicle entity
+     * @return VehicleDTO
      */
     private VehicleDTO mapToDTO(Vehicle vehicle) {
         return VehicleDTO.builder()
                 .vehicleId(vehicle.getVehicleId())
+                .userId(vehicle.getUser().getUserId())  // Get userId from the User entity
                 .vehicleType(vehicle.getVehicleType())
                 .vehicleCompany(vehicle.getVehicleCompany())
                 .vehicleModel(vehicle.getVehicleModel())
                 .chassisNumber(vehicle.getChassisNumber())
                 .engineNumber(vehicle.getEngineNumber())
+                .registrationNumber(vehicle.getRegistrationNumber())
                 .registrationDate(vehicle.getRegistrationDate())
                 .registrationValidityDate(vehicle.getRegistrationValidityDate())
-                .registrationNumber(vehicle.getRegistrationNumber())
                 .ownerName(vehicle.getOwnerName())
                 .build();
     }

@@ -23,6 +23,9 @@ public class VehicleDTO {
     @JsonProperty("vehicleId")
     private Long vehicleId;
 
+    @JsonProperty("userId")
+    private Long userId;
+
     @JsonProperty("vehicleType")
     private String vehicleType;
 

@@ -79,7 +79,7 @@ public class UserService {
 
     private UserDTO convertToDTO(User user) {
         return UserDTO.builder()
-                .userId(user.getId())
+                .userId(user.getUserId())
                 .username(user.getName())
                 .email(user.getEmail())
                 .mobileNumber(user.getMobileNumber())
