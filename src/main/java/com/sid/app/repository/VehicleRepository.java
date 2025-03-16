@@ -28,4 +28,10 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
     // Fetch vehicles by userId
     List<Vehicle> findByUser_UserId(Long userId);
 
+    Optional<Vehicle> findById(Long id);
+
+    Optional<Vehicle> findByVehicleIdAndRegistrationNumber(Long vehicleId, String registrationNumber);
+
+    Optional<Vehicle> findByRegistrationNumber(String registrationNumber);
+
 }
