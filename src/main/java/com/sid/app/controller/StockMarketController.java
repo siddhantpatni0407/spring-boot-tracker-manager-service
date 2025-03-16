@@ -45,7 +45,7 @@ public class StockMarketController {
                     log.info(AppConstants.METHOD_GET_STOCK_DATA + AppConstants.LOG_STOCK_DATA_RETRIEVED, index);
                     ResponseEntity<ResponseDTO<StockResponseDTO>> response = ResponseEntity.ok(ResponseDTO.<StockResponseDTO>builder()
                             .status(AppConstants.STATUS_SUCCESS)
-                            .message(AppConstants.MSG_STOCK_DATA_RETRIEVED)
+                            .message(AppConstants.MSG_STOCK_DATA_RETRIEVED + index)
                             .data(stockData)
                             .build());
                     return response;

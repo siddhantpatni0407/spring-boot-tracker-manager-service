@@ -84,7 +84,6 @@ public class AuthController {
         return authService.sendOtpForLogin(request.getEmail());
     }
 
-    // In AuthController.java
     @PostMapping(AppConstants.VERIFY_OTP_ENDPOINT)
     public ResponseEntity<AuthResponse> verifyOtp(@Valid @RequestBody ForgotPasswordOtpRequest request) {
         log.info("Verifying OTP for email: {}", request.getEmail());
