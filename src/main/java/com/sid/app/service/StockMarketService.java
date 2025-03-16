@@ -1,14 +1,20 @@
 package com.sid.app.service;
 
 import com.sid.app.config.AppProperties;
+import com.sid.app.constants.AppConstants;
+import com.sid.app.exception.StockException;
 import com.sid.app.model.stock.StockResponseDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Mono;
+import reactor.util.retry.Retry;
 
-import java.util.Collections;
+import java.time.Duration;
 
 /**
  * Service for fetching stock market data from NSE API.
@@ -30,16 +36,19 @@ public class StockMarketService {
      * @param properties       Application properties configuration
      */
     public StockMarketService(WebClient.Builder webClientBuilder, AppProperties properties) {
+        this.properties = properties;
         this.webClient = webClientBuilder
                 .baseUrl(properties.getNifty50URL())
-                .defaultHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
-                .defaultHeader("Referer", "https://www.nseindia.com")
-                .defaultHeader("Accept", "application/json, text/plain, */*")
-                .defaultHeader("Accept-Language", "en-US,en;q=0.9")
-                .defaultHeader("Sec-Fetch-Site", "same-origin")
+                .defaultHeader(HttpHeaders.USER_AGENT, AppConstants.WEBCLIENT_USER_AGENT)
+                .defaultHeader(HttpHeaders.REFERER, AppConstants.WEBCLIENT_REFERER)
+                .defaultHeader(HttpHeaders.ACCEPT, AppConstants.WEBCLIENT_ACCEPT)
+                .defaultHeader(HttpHeaders.ACCEPT_LANGUAGE, AppConstants.WEBCLIENT_ACCEPT_LANGUAGE)
+                .defaultHeader("Sec-Fetch-Site", AppConstants.WEBCLIENT_SEC_FETCH_SITE)
+                .defaultHeader("Cache-Control", AppConstants.WEBCLIENT_CACHE_CONTROL)
+                .defaultHeader("Pragma", AppConstants.WEBCLIENT_PRAGMA)
+                .defaultHeader("Connection", AppConstants.WEBCLIENT_CONNECTION)
+                .defaultHeader("Host", AppConstants.WEBCLIENT_HOST)
                 .build();
-
-        this.properties = properties;
     }
 
     /**
@@ -50,35 +59,41 @@ public class StockMarketService {
      */
     public Mono<StockResponseDTO> getStockData(String index) {
         String requestUrl = properties.getNifty50URL() + "?index=" + index;
-        log.info("Calling NSE API: {}", requestUrl); // Log Full URL
+        log.info(AppConstants.LOG_FETCHING_STOCK_DATA, requestUrl);
 
         return webClient
                 .get()
-                .uri(uriBuilder -> uriBuilder
-                        .queryParam("index", index)
-                        .build())
+                .uri(uriBuilder -> uriBuilder.queryParam("index", index).build())
                 .retrieve()
+                .onStatus(HttpStatusCode::is4xxClientError, clientResponse -> {
+                    if (clientResponse.statusCode() == HttpStatus.UNAUTHORIZED) {
+                        log.warn(AppConstants.LOG_UNAUTHORIZED_ACCESS, requestUrl);
+                        return Mono.error(new StockException(AppConstants.UNAUTHORIZED_ACCESS));
+                    }
+                    return clientResponse.createException().flatMap(Mono::error);
+                })
+                .onStatus(HttpStatusCode::is5xxServerError, clientResponse -> {
+                    log.warn(AppConstants.LOG_SERVER_ERROR, requestUrl, clientResponse.statusCode());
+                    return Mono.error(new RuntimeException(AppConstants.NSE_API_UNAVAILABLE));
+                })
                 .bodyToMono(StockResponseDTO.class)
-                .map(response -> {
+                .flatMap(response -> {
                     if (response.getData() != null && !response.getData().isEmpty()) {
-                        log.info("Stock data retrieved successfully for index: {}", index);
-                        log.debug("Stock Data Response: {}", response);
+                        log.info(AppConstants.LOG_STOCK_DATA_RETRIEVED, index);
+                        return Mono.just(response);
                     } else {
-                        log.warn("No stock data found for index: {}", index);
-                        response.setData(Collections.emptyList());
-                    }
-                    return response;
-                })
-                .doOnError(error -> {
-                    if (error instanceof WebClientResponseException webClientException) {
-                        log.error("Error calling NSE API [{}]: {} \nResponse Body: {}",
-                                requestUrl,
-                                webClientException.getMessage(),
-                                webClientException.getResponseBodyAsString());
-                    } else {
-                        log.error("Unexpected error calling NSE API at [{}]", requestUrl, error);
+                        log.warn(AppConstants.LOG_NO_STOCK_DATA, index);
+                        return Mono.error(new StockException(AppConstants.NO_STOCK_DATA_FOUND));
                     }
                 })
-                .onErrorReturn(new StockResponseDTO("ERROR", null, null, Collections.emptyList(), null, null, null, null));
+                .retryWhen(Retry.fixedDelay(3, Duration.ofSeconds(2))
+                        .filter(ex -> ex instanceof WebClientResponseException.TooManyRequests)
+                        .doBeforeRetry(retrySignal -> log.warn(AppConstants.LOG_RETRYING_API_CALL, retrySignal.totalRetries() + 1))
+                )
+                .onErrorResume(Exception.class, ex -> {
+                    log.warn(AppConstants.LOG_UNEXPECTED_ERROR, requestUrl);
+                    return Mono.error(new RuntimeException(AppConstants.UNEXPECTED_ERROR));
+                });
     }
+
 }

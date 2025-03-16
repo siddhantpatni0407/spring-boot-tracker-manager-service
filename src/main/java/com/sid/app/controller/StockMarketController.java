@@ -1,17 +1,19 @@
 package com.sid.app.controller;
 
 import com.sid.app.constants.AppConstants;
+import com.sid.app.exception.StockException;
 import com.sid.app.model.ResponseDTO;
 import com.sid.app.model.stock.StockResponseDTO;
 import com.sid.app.service.StockMarketService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Mono;
 
 /**
@@ -22,10 +24,10 @@ import reactor.core.publisher.Mono;
 @RestController
 @Slf4j
 @CrossOrigin(origins = "http://localhost:4200")
+@RequiredArgsConstructor
 public class StockMarketController {
 
-    @Autowired
-    private StockMarketService stockService;
+    private final StockMarketService stockService;
 
     /**
      * Retrieves stock market data from NSE for the given index.
@@ -35,27 +37,55 @@ public class StockMarketController {
      */
     @GetMapping(AppConstants.STOCK_NIFTY_50_DATA_ENDPOINT)
     public Mono<ResponseEntity<ResponseDTO<StockResponseDTO>>> getStockData(@RequestParam String index) {
-        log.info("Received request to fetch stock data for index: {}", index);
+        log.info(AppConstants.LOG_REQUEST_FETCH_STOCK_DATA, index);
 
         return stockService.getStockData(index)
                 .map(stockData -> {
-                    log.info("Successfully retrieved stock data for index: {}", index);
-                    log.debug("Stock Data Response: {}", stockData); // Detailed log
-
-                    ResponseDTO<StockResponseDTO> response = ResponseDTO.<StockResponseDTO>builder()
-                            .status("SUCCESS")
-                            .message("Stock data retrieved successfully.")
+                    log.info(AppConstants.LOG_STOCK_DATA_RETRIEVED, index);
+                    return ResponseEntity.ok(ResponseDTO.<StockResponseDTO>builder()
+                            .status(AppConstants.STATUS_SUCCESS)
+                            .message(AppConstants.MSG_STOCK_DATA_RETRIEVED)
                             .data(stockData)
-                            .build();
-
-                    return ResponseEntity.ok(response);
+                            .build());
                 })
-                .defaultIfEmpty(ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body(ResponseDTO.<StockResponseDTO>builder()
-                                .status("FAILURE")
-                                .message("No stock data found for the provided index.")
-                                .data(null)
-                                .build()));
+                .switchIfEmpty(Mono.just(ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(createErrorResponse(AppConstants.ERROR_STOCK_DATA_NOT_FOUND, HttpStatus.NOT_FOUND))))
+                .onErrorResume(StockException.class, ex -> {
+                    log.warn(AppConstants.LOG_STOCK_EXCEPTION, ex.getMessage());
+                    return Mono.just(ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                            .body(createErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST)));
+                })
+                .onErrorResume(WebClientResponseException.Unauthorized.class, ex -> {
+                    log.warn(AppConstants.LOG_UNAUTHORIZED_ACCESS, index);
+                    return Mono.just(ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                            .body(createErrorResponse(AppConstants.UNAUTHORIZED_ACCESS, HttpStatus.UNAUTHORIZED)));
+                })
+                .onErrorResume(WebClientResponseException.class, ex -> {
+                    log.warn(AppConstants.LOG_EXTERNAL_API_ERROR, ex.getMessage());
+                    return Mono.just(ResponseEntity.status(HttpStatus.BAD_GATEWAY)
+                            .body(createErrorResponse(AppConstants.ERROR_EXTERNAL_API_FAILURE, HttpStatus.BAD_GATEWAY)));
+                })
+                .onErrorResume(Exception.class, ex -> {
+                    log.warn(AppConstants.ERROR_UNEXPECTED);
+                    return Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                            .body(createErrorResponse(AppConstants.ERROR_UNEXPECTED, HttpStatus.INTERNAL_SERVER_ERROR)));
+                });
+    }
+
+
+    /**
+     * Creates an error response DTO.
+     *
+     * @param message Error message.
+     * @param status  HTTP status code.
+     * @return ResponseDTO with error details.
+     */
+    private ResponseDTO<StockResponseDTO> createErrorResponse(String message, HttpStatus status) {
+        return ResponseDTO.<StockResponseDTO>builder()
+                .status(AppConstants.STATUS_FAILED)
+                .message(message)
+                .data(null)
+                .build();
     }
 
 }
