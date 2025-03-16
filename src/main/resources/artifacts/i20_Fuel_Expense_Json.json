@@ -1,6 +1,7 @@
 [
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-02-08",
 		"quantity": 4.48,
 		"rate": 111.64,
@@ -11,6 +12,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-02-08",
 		"quantity": 18.81,
 		"rate": 111.64,
@@ -21,6 +23,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-02-11",
 		"quantity": 26.43,
 		"rate": 111.64,
@@ -31,6 +34,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-02-20",
 		"quantity": 32.05,
 		"rate": 111.41,
@@ -41,6 +45,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-02-26",
 		"quantity": 29.52,
 		"rate": 111.66,
@@ -51,6 +56,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-03-05",
 		"quantity": 40.22,
 		"rate": 116,
@@ -61,6 +67,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-03-16",
 		"quantity": 34.04,
 		"rate": 111.62,
@@ -71,6 +78,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-03-31",
 		"quantity": 32.2,
 		"rate": 118.04,
@@ -81,6 +89,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-04-07",
 		"quantity": 28.91,
 		"rate": 121.07,
@@ -91,6 +100,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-04-10",
 		"quantity": 6.56,
 		"rate": 122.04,
@@ -101,6 +111,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-04-16",
 		"quantity": 24.94,
 		"rate": 120.31,
@@ -111,6 +122,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-04-24",
 		"quantity": 24.78,
 		"rate": 121.07,
@@ -121,6 +133,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-04-30",
 		"quantity": 35.81,
 		"rate": 125.73,
@@ -131,6 +144,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-05-06",
 		"quantity": 34.97,
 		"rate": 121.55,
@@ -141,6 +155,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-05-08",
 		"quantity": 31.7,
 		"rate": 119.9,
@@ -151,6 +166,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-05-14",
 		"quantity": 37.12,
 		"rate": 119.9,
@@ -161,6 +177,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-05-17",
 		"quantity": 24.93,
 		"rate": 120.29,
@@ -171,6 +188,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-05-23",
 		"quantity": 37.03,
 		"rate": 113,
@@ -181,6 +199,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-05-28",
 		"quantity": 37.62,
 		"rate": 111.17,
@@ -191,6 +210,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-05-31",
 		"quantity": 35.33,
 		"rate": 111.78,
@@ -201,6 +221,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-06-11",
 		"quantity": 37.62,
 		"rate": 111.65,
@@ -211,6 +232,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-06-28",
 		"quantity": 30.63,
 		"rate": 112.97,
@@ -221,6 +243,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-07-09",
 		"quantity": 37.88,
 		"rate": 110.88,
@@ -231,6 +254,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-07-16",
 		"quantity": 39.37,
 		"rate": 107.95,
@@ -241,6 +265,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-07-31",
 		"quantity": 39.03,
 		"rate": 107.62,
@@ -251,6 +276,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-08-13",
 		"quantity": 39.28,
 		"rate": 106.95,
@@ -261,6 +287,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-09-03",
 		"quantity": 38.88,
 		"rate": 108.03,
@@ -271,6 +298,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-09-24",
 		"quantity": 38.33,
 		"rate": 107.02,
@@ -281,6 +309,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-10-15",
 		"quantity": 39.08,
 		"rate": 107.49,
@@ -291,6 +320,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-11-01",
 		"quantity": 35.59,
 		"rate": 106.78,
@@ -301,6 +331,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-11-19",
 		"quantity": 39.57,
 		"rate": 106.23,
@@ -311,6 +342,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-11-26",
 		"quantity": 28.06,
 		"rate": 106.91,
@@ -321,6 +353,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-12-13",
 		"quantity": 39.81,
 		"rate": 108.03,
@@ -331,6 +364,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-12-18",
 		"quantity": 39.41,
 		"rate": 106.58,
@@ -341,6 +375,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-12-27",
 		"quantity": 38.99,
 		"rate": 107.82,
@@ -351,6 +386,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-12-29",
 		"quantity": 40.05,
 		"rate": 102.36,
@@ -361,6 +397,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-12-30",
 		"quantity": 36.38,
 		"rate": 103.63,
@@ -371,6 +408,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2022-12-30",
 		"quantity": 2.51,
 		"rate": 103.63,
@@ -381,6 +419,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-01-01",
 		"quantity": 40.11,
 		"rate": 101.72,
@@ -391,6 +430,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-01-08",
 		"quantity": 38.91,
 		"rate": 108,
@@ -401,6 +441,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-01-26",
 		"quantity": 40.19,
 		"rate": 107.49,
@@ -411,6 +452,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-02-05",
 		"quantity": 40,
 		"rate": 107.02,
@@ -421,6 +463,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-02-15",
 		"quantity": 38.85,
 		"rate": 106.06,
@@ -431,6 +474,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-02-24",
 		"quantity": 39.94,
 		"rate": 107.67,
@@ -441,6 +485,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-03-04",
 		"quantity": 40.02,
 		"rate": 107.49,
@@ -451,6 +496,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-03-19",
 		"quantity": 38,
 		"rate": 107.75,
@@ -461,6 +507,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-04-14",
 		"quantity": 18.86,
 		"rate": 106.06,
@@ -471,6 +518,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-04-15",
 		"quantity": 18.92,
 		"rate": 105.7,
@@ -481,6 +529,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-04-29",
 		"quantity": 23.59,
 		"rate": 105.98,
@@ -491,6 +540,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-05-11",
 		"quantity": 23.43,
 		"rate": 106.69,
@@ -501,6 +551,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-05-14",
 		"quantity": 32.98,
 		"rate": 106.74,
@@ -511,6 +562,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-06-10",
 		"quantity": 39.16,
 		"rate": 105.95,
@@ -521,6 +573,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-06-20",
 		"quantity": 39,
 		"rate": 107.67,
@@ -531,6 +584,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-07-04",
 		"quantity": 24.46,
 		"rate": 106.31,
@@ -541,6 +595,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-07-21",
 		"quantity": 25.51,
 		"rate": 105.84,
@@ -551,6 +606,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-08-05",
 		"quantity": 37.76,
 		"rate": 105.98,
@@ -561,6 +617,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-08-23",
 		"quantity": 37.74,
 		"rate": 105.98,
@@ -571,6 +628,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-09-30",
 		"quantity": 28.31,
 		"rate": 105.98,
@@ -581,6 +639,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-10-09",
 		"quantity": 28.35,
 		"rate": 105.83,
@@ -591,6 +650,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-11-14",
 		"quantity": 37.15,
 		"rate": 107.67,
@@ -601,6 +661,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-11-18",
 		"quantity": 18.81,
 		"rate": 106.27,
@@ -611,6 +672,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-11-26",
 		"quantity": 9.45,
 		"rate": 105.82,
@@ -621,6 +683,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-12-22",
 		"quantity": 18.87,
 		"rate": 106.01,
@@ -631,6 +694,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2023-12-25",
 		"quantity": 37.74,
 		"rate": 106.07,
@@ -641,6 +705,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-01-01",
 		"quantity": 24.67,
 		"rate": 106.21,
@@ -651,6 +716,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-01-18",
 		"quantity": 23.58,
 		"rate": 106.01,
@@ -661,6 +727,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-01-27",
 		"quantity": 28.1,
 		"rate": 106.77,
@@ -671,6 +738,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-02-14",
 		"quantity": 37.74,
 		"rate": 106.01,
@@ -681,6 +749,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-03-27",
 		"quantity": 26.86,
 		"rate": 103.92,
@@ -691,6 +760,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-03-31",
 		"quantity": 14.19,
 		"rate": 105.74,
@@ -701,6 +771,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-04-08",
 		"quantity": 14.2,
 		"rate": 105.59,
@@ -711,6 +782,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-04-09",
 		"quantity": 28.54,
 		"rate": 105.12,
@@ -721,6 +793,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-05-01",
 		"quantity": 38.5,
 		"rate": 103.92,
@@ -731,6 +804,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-05-18",
 		"quantity": 14.43,
 		"rate": 103.92,
@@ -741,6 +815,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-05-23",
 		"quantity": 38.39,
 		"rate": 104.48,
@@ -751,6 +826,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-05-24",
 		"quantity": 33.38,
 		"rate": 104.86,
@@ -761,6 +837,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-06-08",
 		"quantity": 19.2,
 		"rate": 104.15,
@@ -771,6 +848,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-06-16",
 		"quantity": 28.85,
 		"rate": 103.98,
@@ -781,6 +859,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-07-13",
 		"quantity": 35.16,
 		"rate": 103.87,
@@ -791,6 +870,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-07-23",
 		"quantity": 38.44,
 		"rate": 104.13,
@@ -801,6 +881,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-08-16",
 		"quantity": 24.06,
 		"rate": 103.92,
@@ -811,6 +892,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-09-20",
 		"quantity": 23.09,
 		"rate": 103.92,
@@ -821,6 +903,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-10-02",
 		"quantity": 21.17,
 		"rate": 103.92,
@@ -831,6 +914,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-10-31",
 		"quantity": 22.12,
 		"rate": 103.98,
@@ -841,6 +925,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-12-08",
 		"quantity": 22.12,
 		"rate": 103.98,
@@ -851,6 +936,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-12-25",
 		"quantity": 36.65,
 		"rate": 104.74,
@@ -861,6 +947,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-12-26",
 		"quantity": 35.04,
 		"rate": 95.6,
@@ -871,6 +958,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-12-28",
 		"quantity": 35.88,
 		"rate": 104.74,
@@ -881,6 +969,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-12-30",
 		"quantity": 37.65,
 		"rate": 106.25,
@@ -891,6 +980,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2024-12-31",
 		"quantity": 37.54,
 		"rate": 106.91,
@@ -901,6 +991,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2025-01-18",
 		"quantity": 34.93,
 		"rate": 103.98,
@@ -911,6 +1002,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2025-01-21",
 		"quantity": 14.32,
 		"rate": 104.75,
@@ -921,6 +1013,7 @@
 	},
 	{
 		"vehicleId": 1,
+		"userId": 1,
 		"fuelFilledDate": "2025-03-03",
 		"quantity": 14.43,
 		"rate": 103.98,
