@@ -29,6 +29,7 @@ public class AppConstants {
     public static final String VEHICLE_FUEL_BULK_EXPENSE_ENDPOINT = "/api/v1/tracker-manager-service/vehicle/bulk-fuel-expense";
     public static final String VEHICLE_ALL_FUEL_EXPENSE_ENDPOINT = "/api/v1/tracker-manager-service/vehicle/all-fuel-expense";
     public static final String STOCK_NIFTY_STOCK_DATA_ENDPOINT = "/api/v1/tracker-manager-service/stock/nifty-data";
+    public static final String CREDENTIALS_ENDPOINT = "/api/v1/tracker-manager-service/credentials";
 
     /**
      * Status Messages

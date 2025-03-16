@@ -42,7 +42,8 @@ public class SecurityConfig {
                                 AppConstants.FORGOT_PASSWORD_RESET_ENDPOINT,
                                 AppConstants.VERIFY_OTP_ENDPOINT,
                                 AppConstants.VEHICLE_SERVICING_ENDPOINT,
-                                AppConstants.VEHICLE_SERVICE_BULK_ENDPOINT
+                                AppConstants.VEHICLE_SERVICE_BULK_ENDPOINT,
+                                AppConstants.CREDENTIALS_ENDPOINT
                         ).permitAll()
                         .anyExchange()
                         .authenticated()
