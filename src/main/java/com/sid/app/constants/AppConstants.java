@@ -46,16 +46,18 @@ public class AppConstants {
     public static final String ERROR_EXTERNAL_API_FAILURE = "Failed to retrieve stock data from external API.";
 
     // Logging Messages
-    public static final String LOG_STOCK_DATA_RETRIEVED = "Stock data retrieved successfully for index: {}";
-    public static final String LOG_WEBCLIENT_ERROR = "WebClient error calling NSE API [{}]: {} \nResponse Body: {}";
+    public static final String FLOW_START = "*************** START *************** ";
+    public static final String FLOW_END = "*************** END *************** ";
+    public static final String METHOD_GET_STOCK_DATA = "getStockData() : ";
+    public static final String METHOD_INVOKE_STOCK_DATA = "invokeStockData() : ";
     public static final String LOG_REQUEST_FETCH_STOCK_DATA = "Received request to fetch stock data for index: {}";
+    public static final String LOG_STOCK_DATA_RETRIEVED = "Stock data retrieved successfully for index: {}";
     public static final String MSG_STOCK_DATA_RETRIEVED = "Stock data retrieved successfully for index: {}";
     public static final String LOG_STOCK_EXCEPTION = "StockException occurred: {}";
     public static final String LOG_EXTERNAL_API_ERROR = "External API error: {} - Response: {}";
     public static final String LOG_NO_STOCK_DATA = "No stock data found for index: {}";
     public static final String LOG_FETCHING_STOCK_DATA = "Fetching stock data from NSE API: {}";
     public static final String LOG_RETRYING_API_CALL = "Retrying NSE API call... Attempt: {}";
-
     public static final String LOG_UNAUTHORIZED_ACCESS = "Unauthorized access detected while fetching stock data: {}";
     public static final String LOG_SERVER_ERROR = "Server error occurred while fetching stock data from NSE: {}";
     public static final String LOG_UNEXPECTED_ERROR = "Unexpected error occurred while processing stock data request.";
@@ -64,7 +66,12 @@ public class AppConstants {
     public static final String ERROR_UNEXPECTED = "An unexpected error occurred. Please contact support.";
 
 
-    // WebClient Headers
+    // WebClient Headers for NSE API.
+    public static final String HEADER_SEC_FETCH_SITE = "Sec-Fetch-Site";
+    public static final String HEADER_CACHE_CONTROL = "Cache-Control";
+    public static final String HEADER_PRAGMA = "Pragma";
+    public static final String HEADER_CONNECTION = "Connection";
+    public static final String HEADER_HOST = "Host";
     public static final String WEBCLIENT_USER_AGENT = "Mozilla/5.0";
     public static final String WEBCLIENT_REFERER = "https://www.nseindia.com/";
     public static final String WEBCLIENT_ACCEPT = "application/json, text/plain, */*";
@@ -77,7 +84,6 @@ public class AppConstants {
 
     // Exception Messages
     public static final String NO_STOCK_DATA_FOUND = "No stock data found.";
-    public static final String FAILED_TO_RETRIEVE_STOCK_DATA = "Failed to retrieve stock data.";
     public static final String UNEXPECTED_ERROR = "An unexpected error occurred.";
 
 }

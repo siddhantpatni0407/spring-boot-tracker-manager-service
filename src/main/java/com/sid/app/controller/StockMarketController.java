@@ -37,41 +37,43 @@ public class StockMarketController {
      */
     @GetMapping(AppConstants.STOCK_NIFTY_50_DATA_ENDPOINT)
     public Mono<ResponseEntity<ResponseDTO<StockResponseDTO>>> getStockData(@RequestParam String index) {
-        log.info(AppConstants.LOG_REQUEST_FETCH_STOCK_DATA, index);
+        log.info(AppConstants.METHOD_GET_STOCK_DATA + AppConstants.FLOW_START);
+        log.info(AppConstants.METHOD_GET_STOCK_DATA + AppConstants.LOG_REQUEST_FETCH_STOCK_DATA, index);
 
-        return stockService.getStockData(index)
+        return stockService.invokeStockData(index)
                 .map(stockData -> {
-                    log.info(AppConstants.LOG_STOCK_DATA_RETRIEVED, index);
-                    return ResponseEntity.ok(ResponseDTO.<StockResponseDTO>builder()
+                    log.info(AppConstants.METHOD_GET_STOCK_DATA + AppConstants.LOG_STOCK_DATA_RETRIEVED, index);
+                    ResponseEntity<ResponseDTO<StockResponseDTO>> response = ResponseEntity.ok(ResponseDTO.<StockResponseDTO>builder()
                             .status(AppConstants.STATUS_SUCCESS)
                             .message(AppConstants.MSG_STOCK_DATA_RETRIEVED)
                             .data(stockData)
                             .build());
+                    return response;
                 })
                 .switchIfEmpty(Mono.just(ResponseEntity.status(HttpStatus.NOT_FOUND)
                         .body(createErrorResponse(AppConstants.ERROR_STOCK_DATA_NOT_FOUND, HttpStatus.NOT_FOUND))))
                 .onErrorResume(StockException.class, ex -> {
-                    log.warn(AppConstants.LOG_STOCK_EXCEPTION, ex.getMessage());
+                    log.warn(AppConstants.METHOD_GET_STOCK_DATA + AppConstants.LOG_STOCK_EXCEPTION, ex.getMessage());
                     return Mono.just(ResponseEntity.status(HttpStatus.BAD_REQUEST)
                             .body(createErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST)));
                 })
                 .onErrorResume(WebClientResponseException.Unauthorized.class, ex -> {
-                    log.warn(AppConstants.LOG_UNAUTHORIZED_ACCESS, index);
+                    log.warn(AppConstants.METHOD_GET_STOCK_DATA + AppConstants.LOG_UNAUTHORIZED_ACCESS, index);
                     return Mono.just(ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                             .body(createErrorResponse(AppConstants.UNAUTHORIZED_ACCESS, HttpStatus.UNAUTHORIZED)));
                 })
                 .onErrorResume(WebClientResponseException.class, ex -> {
-                    log.warn(AppConstants.LOG_EXTERNAL_API_ERROR, ex.getMessage());
+                    log.warn(AppConstants.METHOD_GET_STOCK_DATA + AppConstants.LOG_EXTERNAL_API_ERROR, ex.getMessage());
                     return Mono.just(ResponseEntity.status(HttpStatus.BAD_GATEWAY)
                             .body(createErrorResponse(AppConstants.ERROR_EXTERNAL_API_FAILURE, HttpStatus.BAD_GATEWAY)));
                 })
                 .onErrorResume(Exception.class, ex -> {
-                    log.warn(AppConstants.ERROR_UNEXPECTED);
+                    log.warn(AppConstants.METHOD_GET_STOCK_DATA + AppConstants.ERROR_UNEXPECTED);
                     return Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                             .body(createErrorResponse(AppConstants.ERROR_UNEXPECTED, HttpStatus.INTERNAL_SERVER_ERROR)));
-                });
+                })
+                .doFinally(signalType -> log.info(AppConstants.METHOD_GET_STOCK_DATA + AppConstants.FLOW_END));
     }
-
 
     /**
      * Creates an error response DTO.

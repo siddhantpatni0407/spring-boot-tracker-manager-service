@@ -79,7 +79,7 @@ webclient:
     memory-buffer-size: 524288
     timeout: 30
     retry:
-      max-retry: 3
+      max-retry: 1
       delay: 5
 
 # Logging Configuration
