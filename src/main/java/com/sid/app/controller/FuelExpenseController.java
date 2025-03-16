@@ -121,8 +121,8 @@ public class FuelExpenseController {
      * @param id Fuel expense ID (Request Parameter)
      * @return Response entity
      */
-    @DeleteMapping(value = AppConstants.VEHICLE_FUEL_EXPENSE_ENDPOINT, params = "id")
-    public ResponseEntity<ResponseDTO<String>> deleteFuelExpense(@RequestParam("id") Long id) {
+    @DeleteMapping(value = AppConstants.VEHICLE_FUEL_EXPENSE_ENDPOINT, params = "fuelExpenseId")
+    public ResponseEntity<ResponseDTO<String>> deleteFuelExpense(@RequestParam("fuelExpenseId") Long id) {
         log.info("Deleting fuel expense by ID: {}", id);
         try {
             fuelExpenseService.deleteFuelExpense(id);

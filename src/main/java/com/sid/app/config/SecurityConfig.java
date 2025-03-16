@@ -31,6 +31,7 @@ public class SecurityConfig {
                                 AppConstants.VEHICLE_BULK_REGISTER_ENDPOINT,
                                 AppConstants.VEHICLE_ENDPOINT,
                                 AppConstants.FETCH_ALL_VEHICLES_ENDPOINT,
+                                AppConstants.FETCH_ALL_VEHICLES_BY_USER_ENDPOINT,
                                 AppConstants.FETCH_ALL_USERS_ENDPOINT,
                                 AppConstants.USER_ENDPOINT,
                                 AppConstants.VEHICLE_ALL_FUEL_EXPENSE_ENDPOINT,
@@ -39,7 +40,9 @@ public class SecurityConfig {
                                 AppConstants.STOCK_NIFTY_STOCK_DATA_ENDPOINT,
                                 AppConstants.FORGOT_PASSWORD_REQUEST_OTP_ENDPOINT,
                                 AppConstants.FORGOT_PASSWORD_RESET_ENDPOINT,
-                                AppConstants.VERIFY_OTP_ENDPOINT
+                                AppConstants.VERIFY_OTP_ENDPOINT,
+                                AppConstants.VEHICLE_SERVICING_ENDPOINT,
+                                AppConstants.VEHICLE_SERVICE_BULK_ENDPOINT
                         ).permitAll()
                         .anyExchange()
                         .authenticated()

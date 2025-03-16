@@ -19,7 +19,10 @@ public class AppConstants {
     public static final String VEHICLE_REGISTER_ENDPOINT = "/api/v1/tracker-manager-service/vehicle/register";
     public static final String VEHICLE_BULK_REGISTER_ENDPOINT = "/api/v1/tracker-manager-service/vehicle/bulk-register";
     public static final String FETCH_ALL_VEHICLES_ENDPOINT = "/api/v1/tracker-manager-service/vehicle/fetch";
+    public static final String FETCH_ALL_VEHICLES_BY_USER_ENDPOINT = "/api/v1/tracker-manager-service/user-vehicle/fetch";
     public static final String VEHICLE_ENDPOINT = "/api/v1/tracker-manager-service/vehicle";
+    public static final String VEHICLE_SERVICING_ENDPOINT = "/api/v1/tracker-manager-service/vehicle/service";
+    public static final String VEHICLE_SERVICE_BULK_ENDPOINT = "/api/v1/tracker-manager-service/vehicle/bulk-service";
     public static final String FETCH_ALL_USERS_ENDPOINT = "/api/v1/tracker-manager-service/user/fetch";
     public static final String USER_ENDPOINT = "/api/v1/tracker-manager-service/user";
     public static final String VEHICLE_FUEL_EXPENSE_ENDPOINT = "/api/v1/tracker-manager-service/vehicle/fuel-expense";

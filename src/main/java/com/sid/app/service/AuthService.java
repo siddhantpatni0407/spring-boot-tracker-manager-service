@@ -43,10 +43,10 @@ public class AuthService {
             User foundUser = existingUser.get();
             if (foundUser.getEmail().equals(request.getEmail())) {
                 log.warn("Registration failed: Email {} already exists", request.getEmail());
-                return new AuthResponse(null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_EMAIL_EXISTS);
+                return new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_EMAIL_EXISTS);
             } else {
                 log.warn("Registration failed: Mobile number {} already exists", request.getMobileNumber());
-                return new AuthResponse(null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_MOBILE_EXISTS);
+                return new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_MOBILE_EXISTS);
             }
         }
 
@@ -56,7 +56,7 @@ public class AuthService {
             encryptedPassword = AESUtils.encrypt(request.getPassword());
         } catch (Exception e) {
             log.error("Error encrypting password: {}", e.getMessage());
-            return new AuthResponse(null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_REGISTRATION);
+            return new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_REGISTRATION);
         }
 
         // Create and save the new user
@@ -70,7 +70,7 @@ public class AuthService {
         User savedUser = userRepository.save(newUser);
         log.info("User registered successfully: Email: {}, Mobile: {}", savedUser.getEmail(), savedUser.getMobileNumber());
 
-        return new AuthResponse(jwtUtil.generateToken(savedUser.getEmail()), savedUser.getRole(), savedUser.getName(), AppConstants.STATUS_SUCCESS, AppConstants.SUCCESS_MESSAGE_REGISTRATION_SUCCESSFUL);
+        return new AuthResponse(jwtUtil.generateToken(savedUser.getEmail()), savedUser.getRole(), savedUser.getUserId(), savedUser.getName(), AppConstants.STATUS_SUCCESS, AppConstants.SUCCESS_MESSAGE_REGISTRATION_SUCCESSFUL);
     }
 
     public AuthResponse login(LoginRequest request) {
@@ -81,7 +81,7 @@ public class AuthService {
 
         if (optionalUser.isEmpty()) {
             log.warn("login() : Login failed: User not found for email {}", request.getEmail());
-            return new AuthResponse(null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_USER_NOT_FOUND);
+            return new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_USER_NOT_FOUND);
         }
 
         User user = optionalUser.get();
@@ -92,12 +92,12 @@ public class AuthService {
             decryptedPassword = AESUtils.decrypt(user.getPassword());
         } catch (Exception e) {
             log.error("login() : Error decrypting password: {}", e.getMessage());
-            return new AuthResponse(null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_LOGIN);
+            return new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_LOGIN);
         }
 
         if (!request.getPassword().equals(decryptedPassword)) {
             log.warn("login() : Login failed: Invalid credentials for email {}", request.getEmail());
-            return new AuthResponse(null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_INVALID_LOGIN);
+            return new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_INVALID_LOGIN);
         }
 
         // Generate JWT token
@@ -105,7 +105,7 @@ public class AuthService {
 
         log.info("login() : Login successful for email: {}", request.getEmail());
 
-        return new AuthResponse(token, user.getRole(), user.getName(), AppConstants.STATUS_SUCCESS, AppConstants.LOGIN_SUCCESSFUL_MESSAGE);
+        return new AuthResponse(token, user.getRole(), user.getUserId(), user.getName(), AppConstants.STATUS_SUCCESS, AppConstants.LOGIN_SUCCESSFUL_MESSAGE);
     }
 
     /**
@@ -193,7 +193,7 @@ public class AuthService {
         if (!otpStore.containsKey(email) || !otpStore.get(email).equals(otp)) {
             log.warn("Invalid OTP attempt for email: {}", email);
             return ResponseEntity.badRequest()
-                    .body(new AuthResponse(null, null, null, AppConstants.STATUS_FAILED, "Invalid OTP."));
+                    .body(new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, "Invalid OTP."));
         }
 
         // OTP verified successfully, remove from store
@@ -204,7 +204,7 @@ public class AuthService {
         if (optionalUser.isEmpty()) {
             log.warn("OTP verification failed: User not found for email {}", email);
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(new AuthResponse(null, null, null, AppConstants.STATUS_FAILED, "User not found."));
+                    .body(new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, "User not found."));
         }
 
         User user = optionalUser.get();
@@ -215,7 +215,7 @@ public class AuthService {
         log.info("OTP verified successfully. Login successful for email: {}", email);
 
         return ResponseEntity.ok(
-                new AuthResponse(token, user.getRole(), user.getName(), AppConstants.STATUS_SUCCESS, "OTP Login Successful."));
+                new AuthResponse(token, user.getRole(), user.getUserId(), user.getName(), AppConstants.STATUS_SUCCESS, "OTP Login Successful."));
     }
 
 }
