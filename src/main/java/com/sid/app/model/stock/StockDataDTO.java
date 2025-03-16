@@ -41,6 +41,6 @@ public class StockDataDTO {
     private double perChange30d;
     private String chart30dPath;
     private String chartTodayPath;
-    //private MetaDTO meta;
+    private MetaDTO meta;
 
 }
