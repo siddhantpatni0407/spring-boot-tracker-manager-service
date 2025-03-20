@@ -83,7 +83,7 @@ public class AppConstants {
      * Security and Encryption
      */
     public static final String AES_ALGORITHM = "AES";
-    public static final String SECRET_KEY = "Xf9aLp3qzT7vN2sYgW5KbVc6Rm8QJ0dP"; // 16, 24, or 32 chars
+    public static final String SECRET_KEY = "Xf9aLp3qzT7vN2sYgW5KbVc6Rm8QJ0dP"; //32 chars length
     public static final String DEFAULT_USER = "DEFAULT_USER";
 
     /**
