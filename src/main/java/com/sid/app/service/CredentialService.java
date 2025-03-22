@@ -26,6 +26,9 @@ public class CredentialService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private AESUtils aesUtils;
+
     /**
      * Save a new credential.
      *
@@ -52,7 +55,7 @@ public class CredentialService {
         }
 
         // Encrypt the password
-        String encryptedPassword = AESUtils.encrypt(credentialDTO.getPassword());
+        String encryptedPassword = aesUtils.encrypt(credentialDTO.getPassword());
         credentialDTO.setPassword(encryptedPassword);
 
         // Map DTO to entity
@@ -97,7 +100,7 @@ public class CredentialService {
                 .map(this::convertToDTO)
                 .peek(dto -> {
                     try {
-                        dto.setPassword(AESUtils.decrypt(dto.getPassword()));
+                        dto.setPassword(aesUtils.decrypt(dto.getPassword()));
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
@@ -126,7 +129,7 @@ public class CredentialService {
         credential.setUsername(credentialDTO.getUsername());
         credential.setEmail(credentialDTO.getEmail());
         credential.setMobileNumber(credentialDTO.getMobileNumber());
-        credential.setPassword(AESUtils.encrypt(credentialDTO.getPassword())); // Encrypt updated password
+        credential.setPassword(aesUtils.encrypt(credentialDTO.getPassword())); // Encrypt updated password
         credential.setStatus(credentialDTO.getStatus());
         credential.setRemarks(credentialDTO.getRemarks());
 

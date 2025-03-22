@@ -30,6 +30,7 @@ public class AuthService {
     private final EmailService emailService;
     private final JwtUtil jwtUtil;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final AESUtils aesUtils;
 
     private static final ConcurrentHashMap<String, String> otpStore = new ConcurrentHashMap<>();
 
@@ -53,7 +54,7 @@ public class AuthService {
         // Encrypt password using AESUtil
         String encryptedPassword;
         try {
-            encryptedPassword = AESUtils.encrypt(request.getPassword());
+            encryptedPassword = aesUtils.encrypt(request.getPassword());
         } catch (Exception e) {
             log.error("Error encrypting password: {}", e.getMessage());
             return new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_REGISTRATION);
@@ -89,7 +90,7 @@ public class AuthService {
         // Decrypt stored password and validate
         String decryptedPassword;
         try {
-            decryptedPassword = AESUtils.decrypt(user.getPassword());
+            decryptedPassword = aesUtils.decrypt(user.getPassword());
         } catch (Exception e) {
             log.error("login() : Error decrypting password: {}", e.getMessage());
             return new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_LOGIN);
@@ -159,7 +160,7 @@ public class AuthService {
         // Encrypt new password and update user record
         User user = userOptional.get();
         try {
-            user.setPassword(AESUtils.encrypt(newPassword));
+            user.setPassword(aesUtils.encrypt(newPassword));
             userRepository.save(user);
             otpStore.remove(email);
             log.info("Password reset successfully for {}", email);

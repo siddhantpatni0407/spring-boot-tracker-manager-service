@@ -71,6 +71,11 @@ stock-market:
   nifty-50:
     url: https://www.nseindia.com/api/equity-stockIndices
 
+encryption:
+  aes:
+    algorithm: AES
+    secret-key: Xf9aLp3qzT7vN2sYgW5KbVc6Rm8QJ0dP
+
 server:
   port: 8069  # Server port, configurable via environment variable
 

@@ -80,10 +80,8 @@ public class AppConstants {
     public static final String NSE_API_UNAVAILABLE = "NSE API is currently unavailable. Please try again later.";
 
     /**
-     * Security and Encryption
+     * Default user.
      */
-    public static final String AES_ALGORITHM = "AES";
-    public static final String SECRET_KEY = "Xf9aLp3qzT7vN2sYgW5KbVc6Rm8QJ0dP"; //32 chars length
     public static final String DEFAULT_USER = "DEFAULT_USER";
 
     /**
