@@ -43,6 +43,10 @@ public class User extends Auditable {
     @Column(name = "password", length = 255, nullable = false)
     private String password;
 
+    // New field to store encryption key version used to encrypt the password
+    @Column(name = "password_encryption_key_version", nullable = false)
+    private Integer passwordEncryptionKeyVersion;
+
     @Column(name = "role", length = 50, nullable = false)
     private String role;
 

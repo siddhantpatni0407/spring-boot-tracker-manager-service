@@ -49,6 +49,9 @@ public class Credential extends Auditable {
     @Column(name = "password", nullable = false)
     private String password; // Encrypted password
 
+    @Column(name = "password_encryption_key_version", nullable = false)
+    private Integer passwordEncryptionKeyVersion;
+
     @Column(name = "status", length = 50)
     private String status;
 

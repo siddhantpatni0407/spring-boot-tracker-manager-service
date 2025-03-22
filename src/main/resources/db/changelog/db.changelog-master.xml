@@ -19,7 +19,4 @@
     <changeSet id="5" author="sid">
         <sqlFile path="db/scripts/add_credentials_table.sql"/>
     </changeSet>
-    <changeSet id="6" author="sid">
-        <sqlFile path="db/scripts/add_encryption_keys_table.sql"/>
-    </changeSet>
 </databaseChangeLog>
