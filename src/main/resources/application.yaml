@@ -50,7 +50,7 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
         jdbc:
-          time_zone: UTC
+          time_zone: Asia/Kolkata
           lob:
             non_contextual_creation: true  # Prevents unnecessary warnings for BLOB fields
 
