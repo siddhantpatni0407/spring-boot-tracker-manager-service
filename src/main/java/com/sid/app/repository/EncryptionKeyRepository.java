@@ -12,4 +12,6 @@ public interface EncryptionKeyRepository extends JpaRepository<EncryptionKey, Lo
 
     EncryptionKey findTopByOrderByKeyVersionDesc();
 
+    EncryptionKey  findByKeyVersion(int keyVersion);
+
 }

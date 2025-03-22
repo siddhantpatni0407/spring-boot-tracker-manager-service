@@ -31,6 +31,7 @@ public class AuthService {
     private final JwtUtil jwtUtil;
     private final BCryptPasswordEncoder passwordEncoder;
     private final AESUtils aesUtils;
+    private final EncryptionKeyService encryptionKeyService;
 
     private static final ConcurrentHashMap<String, String> otpStore = new ConcurrentHashMap<>();
 
@@ -39,7 +40,6 @@ public class AuthService {
 
         // Check if email or mobile number already exists
         Optional<User> existingUser = userRepository.findByEmailOrMobileNumber(request.getEmail(), request.getMobileNumber());
-
         if (existingUser.isPresent()) {
             User foundUser = existingUser.get();
             if (foundUser.getEmail().equals(request.getEmail())) {
@@ -51,7 +51,7 @@ public class AuthService {
             }
         }
 
-        // Encrypt password using AESUtil
+        // Encrypt password using AESUtils and get the latest key version for storing with the user
         String encryptedPassword;
         try {
             encryptedPassword = aesUtils.encrypt(request.getPassword());
@@ -68,11 +68,22 @@ public class AuthService {
         newUser.setPassword(encryptedPassword);
         newUser.setRole(request.getRole());
 
+        // Set the encryption key version from the EncryptionKeyService
+        newUser.setPasswordEncryptionKeyVersion(encryptionKeyService.getLatestKey().getKeyVersion());
+
         User savedUser = userRepository.save(newUser);
         log.info("User registered successfully: Email: {}, Mobile: {}", savedUser.getEmail(), savedUser.getMobileNumber());
 
-        return new AuthResponse(jwtUtil.generateToken(savedUser.getEmail()), savedUser.getRole(), savedUser.getUserId(), savedUser.getName(), AppConstants.STATUS_SUCCESS, AppConstants.SUCCESS_MESSAGE_REGISTRATION_SUCCESSFUL);
+        return new AuthResponse(
+                jwtUtil.generateToken(savedUser.getEmail()),
+                savedUser.getRole(),
+                savedUser.getUserId(),
+                savedUser.getName(),
+                AppConstants.STATUS_SUCCESS,
+                AppConstants.SUCCESS_MESSAGE_REGISTRATION_SUCCESSFUL
+        );
     }
+
 
     public AuthResponse login(LoginRequest request) {
         log.info("login() : Attempting login for email: {}", request.getEmail());
@@ -90,7 +101,7 @@ public class AuthService {
         // Decrypt stored password and validate
         String decryptedPassword;
         try {
-            decryptedPassword = aesUtils.decrypt(user.getPassword());
+            decryptedPassword = aesUtils.decrypt(user.getPassword(), user.getPasswordEncryptionKeyVersion());
         } catch (Exception e) {
             log.error("login() : Error decrypting password: {}", e.getMessage());
             return new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_LOGIN);

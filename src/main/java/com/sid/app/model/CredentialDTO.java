@@ -48,6 +48,9 @@ public class CredentialDTO {
     @JsonProperty("password")
     private String password; // Will be stored in encrypted format
 
+    @JsonProperty("passwordEncryptionKeyVersion")
+    private Integer passwordEncryptionKeyVersion;
+
     @JsonProperty("status")
     private String status;
 

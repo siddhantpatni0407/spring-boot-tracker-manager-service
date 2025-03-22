@@ -29,6 +29,9 @@ public class CredentialService {
     @Autowired
     private AESUtils aesUtils;
 
+    @Autowired
+    private EncryptionKeyService encryptionKeyService;
+
     /**
      * Save a new credential.
      *
@@ -69,6 +72,8 @@ public class CredentialService {
         credential.setEmail(credentialDTO.getEmail());
         credential.setMobileNumber(credentialDTO.getMobileNumber());
         credential.setPassword(credentialDTO.getPassword());
+        // Set the encryption key version from the EncryptionKeyService
+        credential.setPasswordEncryptionKeyVersion(encryptionKeyService.getLatestKey().getKeyVersion());
         credential.setStatus(credentialDTO.getStatus());
         credential.setRemarks(credentialDTO.getRemarks());
 
@@ -100,7 +105,7 @@ public class CredentialService {
                 .map(this::convertToDTO)
                 .peek(dto -> {
                     try {
-                        dto.setPassword(aesUtils.decrypt(dto.getPassword()));
+                        dto.setPassword(aesUtils.decrypt(dto.getPassword(), dto.getPasswordEncryptionKeyVersion()));
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
@@ -174,6 +179,7 @@ public class CredentialService {
                 .email(credential.getEmail())
                 .mobileNumber(credential.getMobileNumber())
                 .password(credential.getPassword()) // Password is already encrypted
+                .passwordEncryptionKeyVersion(credential.getPasswordEncryptionKeyVersion())
                 .status(credential.getStatus())
                 .remarks(credential.getRemarks())
                 .build();
