@@ -102,7 +102,6 @@ public class AuthService {
         );
     }
 
-
     public AuthResponse login(LoginRequest request) {
         log.info("login() : Attempting login for email: {}", request.getEmail());
 
@@ -117,6 +116,9 @@ public class AuthService {
         }
 
         User user = optionalUser.get();
+
+        // Store the previous login time before updating it
+        LocalDateTime previousLoginTime = user.getLastLoginTime();
 
         // Check if account is active
         if (!user.getIsActive()) {
@@ -169,7 +171,7 @@ public class AuthService {
         // Reset login attempts on successful login
         user.setLoginAttempts(0);
 
-        // Update last login time
+        // Update last login time with current time
         LocalDateTime now = LocalDateTime.now();
         user.setLastLoginTime(now);
         userRepository.save(user);
@@ -178,7 +180,7 @@ public class AuthService {
         String token = jwtUtil.generateToken(user.getEmail());
 
         log.info("login() : Login successful for email: {}. Previous login: {}",
-                request.getEmail(), user.getLastLoginTime());
+                request.getEmail(), previousLoginTime);
 
         return new AuthResponse(
                 token,
@@ -187,7 +189,7 @@ public class AuthService {
                 user.getName(),
                 AppConstants.STATUS_SUCCESS,
                 AppConstants.LOGIN_SUCCESSFUL_MESSAGE,
-                now, // Current login time
+                previousLoginTime,  // Return the previous login time (before update)
                 user.getIsActive(),
                 0, // Reset attempts
                 false // Account not locked
