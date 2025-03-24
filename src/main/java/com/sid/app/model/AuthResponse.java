@@ -3,6 +3,8 @@ package com.sid.app.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 /**
  * @author Siddhant Patni
  */
@@ -16,5 +18,9 @@ public class AuthResponse {
     private String name;
     private String status;
     private String message;
+    private LocalDateTime lastLoginTime;
+    private Boolean isActive;
+    private Integer loginAttempts;
+    private Boolean accountLocked;
 
 }

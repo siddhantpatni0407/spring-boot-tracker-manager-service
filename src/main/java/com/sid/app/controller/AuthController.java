@@ -40,17 +40,24 @@ public class AuthController {
 
     @PostMapping(value = AppConstants.USER_LOGIN_ENDPOINT)
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
-
-        log.info("login() : request - > {}", ApplicationUtils.getJSONString(request));
+        log.info("login() : request -> {}", ApplicationUtils.getJSONString(request));
         log.info("Login attempt for user: {}", request.getEmail());
+
         AuthResponse response = authService.login(request);
-        log.info("login() : response - > {}", ApplicationUtils.getJSONString(response));
+
+        log.info("login() : response -> {}", ApplicationUtils.getJSONString(response));
+
         if ("SUCCESS".equals(response.getStatus())) {
-            log.info("login() : Login successful for user: {}", request.getEmail());
-            return ResponseEntity.ok(response); // ✅ 200 OK for success
+            log.info("login() : Login successful for user: {}. Last login: {}",
+                    request.getEmail(), response.getLastLoginTime());
+            return ResponseEntity.ok(response);
         } else {
-            log.warn("login() : Login failed for user: {} - Reason: {}", request.getEmail(), response.getMessage());
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response); // ✅ 401 Unauthorized
+            HttpStatus status = response.getAccountLocked() != null && response.getAccountLocked()
+                    ? HttpStatus.FORBIDDEN // 403 for locked accounts
+                    : HttpStatus.UNAUTHORIZED; // 401 for other failures
+            log.warn("login() : Login failed for user: {} - Reason: {}",
+                    request.getEmail(), response.getMessage());
+            return ResponseEntity.status(status).body(response);
         }
     }
 

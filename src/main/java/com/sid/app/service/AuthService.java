@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
@@ -44,10 +45,16 @@ public class AuthService {
             User foundUser = existingUser.get();
             if (foundUser.getEmail().equals(request.getEmail())) {
                 log.warn("Registration failed: Email {} already exists", request.getEmail());
-                return new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_EMAIL_EXISTS);
+                return new AuthResponse(null, null, null, null,
+                        AppConstants.STATUS_FAILED,
+                        AppConstants.ERROR_MESSAGE_EMAIL_EXISTS,
+                        null, null, null, null);
             } else {
                 log.warn("Registration failed: Mobile number {} already exists", request.getMobileNumber());
-                return new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_MOBILE_EXISTS);
+                return new AuthResponse(null, null, null, null,
+                        AppConstants.STATUS_FAILED,
+                        AppConstants.ERROR_MESSAGE_MOBILE_EXISTS,
+                        null, null, null, null);
             }
         }
 
@@ -57,19 +64,26 @@ public class AuthService {
             encryptedPassword = aesUtils.encrypt(request.getPassword());
         } catch (Exception e) {
             log.error("Error encrypting password: {}", e.getMessage());
-            return new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_REGISTRATION);
+            return new AuthResponse(null, null, null, null,
+                    AppConstants.STATUS_FAILED,
+                    AppConstants.ERROR_MESSAGE_REGISTRATION,
+                    null, null, null, null);
         }
 
-        // Create and save the new user
+        // Create and save the new user with default security settings
         User newUser = new User();
         newUser.setName(request.getName());
         newUser.setEmail(request.getEmail());
         newUser.setMobileNumber(request.getMobileNumber());
         newUser.setPassword(encryptedPassword);
         newUser.setRole(request.getRole());
-
-        // Set the encryption key version from the EncryptionKeyService
         newUser.setPasswordEncryptionKeyVersion(encryptionKeyService.getLatestKey().getKeyVersion());
+
+        // Set default security values
+        newUser.setIsActive(true); // Active by default
+        newUser.setLoginAttempts(0); // No failed attempts
+        newUser.setAccountLocked(false); // Not locked
+        newUser.setLastLoginTime(null); // Never logged in
 
         User savedUser = userRepository.save(newUser);
         log.info("User registered successfully: Email: {}, Mobile: {}", savedUser.getEmail(), savedUser.getMobileNumber());
@@ -80,7 +94,11 @@ public class AuthService {
                 savedUser.getUserId(),
                 savedUser.getName(),
                 AppConstants.STATUS_SUCCESS,
-                AppConstants.SUCCESS_MESSAGE_REGISTRATION_SUCCESSFUL
+                AppConstants.SUCCESS_MESSAGE_REGISTRATION_SUCCESSFUL,
+                null, // No last login time for new registration
+                true, // Account is active
+                0,    // No login attempts
+                false // Account not locked
         );
     }
 
@@ -93,31 +111,87 @@ public class AuthService {
 
         if (optionalUser.isEmpty()) {
             log.warn("login() : Login failed: User not found for email {}", request.getEmail());
-            return new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_USER_NOT_FOUND);
+            return new AuthResponse(null, null, null, null,
+                    AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_USER_NOT_FOUND,
+                    null, null, null, null);
         }
 
         User user = optionalUser.get();
 
+        // Check if account is active
+        if (!user.getIsActive()) {
+            log.warn("login() : Login failed: Inactive account for email {}", request.getEmail());
+            return new AuthResponse(null, null, null, null,
+                    AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_INACTIVE_ACCOUNT,
+                    null, false, user.getLoginAttempts(), user.getAccountLocked());
+        }
+
+        // Check if account is locked
+        if (user.getAccountLocked()) {
+            log.warn("login() : Login failed: Account locked for email {}", request.getEmail());
+            return new AuthResponse(null, null, null, null,
+                    AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_ACCOUNT_LOCKED,
+                    null, user.getIsActive(), user.getLoginAttempts(), true);
+        }
+
         // Decrypt stored password and validate
         String decryptedPassword;
         try {
-            decryptedPassword = aesUtils.decrypt(user.getPassword(), user.getPasswordEncryptionKeyVersion());
+            decryptedPassword = aesUtils.decrypt(user.getPassword(),
+                    user.getPasswordEncryptionKeyVersion());
         } catch (Exception e) {
             log.error("login() : Error decrypting password: {}", e.getMessage());
-            return new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_LOGIN);
+            return new AuthResponse(null, null, null, null,
+                    AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_LOGIN,
+                    null, user.getIsActive(), user.getLoginAttempts(), user.getAccountLocked());
         }
 
         if (!request.getPassword().equals(decryptedPassword)) {
-            log.warn("login() : Login failed: Invalid credentials for email {}", request.getEmail());
-            return new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_INVALID_LOGIN);
+            // Increment failed login attempts
+            user.setLoginAttempts(user.getLoginAttempts() + 1);
+
+            // Lock account after 5 failed attempts
+            if (user.getLoginAttempts() >= 5) {
+                user.setAccountLocked(true);
+                log.warn("login() : Account locked due to too many failed attempts: {}",
+                        request.getEmail());
+            }
+
+            userRepository.save(user);
+
+            log.warn("login() : Login failed: Invalid credentials for email {}",
+                    request.getEmail());
+            return new AuthResponse(null, null, null, null,
+                    AppConstants.STATUS_FAILED, AppConstants.ERROR_MESSAGE_INVALID_LOGIN,
+                    null, user.getIsActive(), user.getLoginAttempts(), user.getAccountLocked());
         }
+
+        // Reset login attempts on successful login
+        user.setLoginAttempts(0);
+
+        // Update last login time
+        LocalDateTime now = LocalDateTime.now();
+        user.setLastLoginTime(now);
+        userRepository.save(user);
 
         // Generate JWT token
         String token = jwtUtil.generateToken(user.getEmail());
 
-        log.info("login() : Login successful for email: {}", request.getEmail());
+        log.info("login() : Login successful for email: {}. Previous login: {}",
+                request.getEmail(), user.getLastLoginTime());
 
-        return new AuthResponse(token, user.getRole(), user.getUserId(), user.getName(), AppConstants.STATUS_SUCCESS, AppConstants.LOGIN_SUCCESSFUL_MESSAGE);
+        return new AuthResponse(
+                token,
+                user.getRole(),
+                user.getUserId(),
+                user.getName(),
+                AppConstants.STATUS_SUCCESS,
+                AppConstants.LOGIN_SUCCESSFUL_MESSAGE,
+                now, // Current login time
+                user.getIsActive(),
+                0, // Reset attempts
+                false // Account not locked
+        );
     }
 
     /**
@@ -202,10 +276,15 @@ public class AuthService {
     }
 
     public ResponseEntity<AuthResponse> verifyOtp(String email, String otp) {
+        // Validate OTP
         if (!otpStore.containsKey(email) || !otpStore.get(email).equals(otp)) {
             log.warn("Invalid OTP attempt for email: {}", email);
             return ResponseEntity.badRequest()
-                    .body(new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, "Invalid OTP."));
+                    .body(new AuthResponse(
+                            null, null, null, null,
+                            AppConstants.STATUS_FAILED,
+                            "Invalid OTP.",
+                            null, null, null, null));
         }
 
         // OTP verified successfully, remove from store
@@ -216,10 +295,40 @@ public class AuthService {
         if (optionalUser.isEmpty()) {
             log.warn("OTP verification failed: User not found for email {}", email);
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(new AuthResponse(null, null, null, null, AppConstants.STATUS_FAILED, "User not found."));
+                    .body(new AuthResponse(
+                            null, null, null, null,
+                            AppConstants.STATUS_FAILED,
+                            "User not found.",
+                            null, null, null, null));
         }
 
         User user = optionalUser.get();
+
+        // Check account status
+        if (!user.getIsActive()) {
+            log.warn("OTP verification failed: Inactive account for email {}", email);
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(new AuthResponse(
+                            null, null, null, null,
+                            AppConstants.STATUS_FAILED,
+                            AppConstants.ERROR_MESSAGE_INACTIVE_ACCOUNT,
+                            null, false, user.getLoginAttempts(), user.getAccountLocked()));
+        }
+
+        if (user.getAccountLocked()) {
+            log.warn("OTP verification failed: Locked account for email {}", email);
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(new AuthResponse(
+                            null, null, null, null,
+                            AppConstants.STATUS_FAILED,
+                            AppConstants.ERROR_MESSAGE_ACCOUNT_LOCKED,
+                            null, user.getIsActive(), user.getLoginAttempts(), true));
+        }
+
+        // Update last login time
+        LocalDateTime now = LocalDateTime.now();
+        user.setLastLoginTime(now);
+        userRepository.save(user);
 
         // Generate JWT token
         String token = jwtUtil.generateToken(user.getEmail());
@@ -227,7 +336,18 @@ public class AuthService {
         log.info("OTP verified successfully. Login successful for email: {}", email);
 
         return ResponseEntity.ok(
-                new AuthResponse(token, user.getRole(), user.getUserId(), user.getName(), AppConstants.STATUS_SUCCESS, "OTP Login Successful."));
+                new AuthResponse(
+                        token,
+                        user.getRole(),
+                        user.getUserId(),
+                        user.getName(),
+                        AppConstants.STATUS_SUCCESS,
+                        "OTP verification successful.",
+                        now,  // Current login time
+                        true, // Account is active
+                        0,    // Reset login attempts (if applicable)
+                        false // Account not locked
+                ));
     }
 
 }

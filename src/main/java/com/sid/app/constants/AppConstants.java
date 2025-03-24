@@ -58,6 +58,8 @@ public class AppConstants {
     public static final String ERROR_UNEXPECTED = "An unexpected error occurred. Please contact support.";
     public static final String NO_STOCK_DATA_FOUND = "No stock data found.";
     public static final String UNEXPECTED_ERROR = "An unexpected error occurred.";
+    public static final String ERROR_MESSAGE_ACCOUNT_LOCKED = "Account locked. Please contact administrator";
+    public static final String ERROR_MESSAGE_INACTIVE_ACCOUNT = "Account is inactive. Please contact administrator";
 
     /**
      * Logging Messages

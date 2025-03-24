@@ -14,6 +14,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.EqualsAndHashCode;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Setter
@@ -43,11 +45,22 @@ public class User extends Auditable {
     @Column(name = "password", length = 255, nullable = false)
     private String password;
 
-    // New field to store encryption key version used to encrypt the password
     @Column(name = "password_encryption_key_version", nullable = false)
     private Integer passwordEncryptionKeyVersion;
 
     @Column(name = "role", length = 50, nullable = false)
     private String role;
+
+    @Column(name = "last_login_time")
+    private LocalDateTime lastLoginTime;
+
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive = true;
+
+    @Column(name = "login_attempts", nullable = false)
+    private Integer loginAttempts = 0;
+
+    @Column(name = "account_locked", nullable = false)
+    private Boolean accountLocked = false;
 
 }
