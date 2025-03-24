@@ -1,10 +1,7 @@
 package com.sid.app.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-
-import java.time.LocalDate;
 
 /**
  * Author: Siddhant Patni
@@ -30,5 +27,8 @@ public class UserDTO {
 
     @JsonProperty("role")
     private String role;
+
+    @JsonProperty("isActive")
+    private Boolean isActive;
 
 }

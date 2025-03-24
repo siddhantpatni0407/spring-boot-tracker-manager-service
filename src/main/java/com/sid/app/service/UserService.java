@@ -84,6 +84,7 @@ public class UserService {
                 .email(user.getEmail())
                 .mobileNumber(user.getMobileNumber())
                 .role(user.getRole())
+                .isActive(user.getIsActive())
                 .build();
     }
 
