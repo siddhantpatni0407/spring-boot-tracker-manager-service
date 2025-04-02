@@ -43,7 +43,11 @@ public class SecurityConfig {
                                 AppConstants.VERIFY_OTP_ENDPOINT,
                                 AppConstants.VEHICLE_SERVICING_ENDPOINT,
                                 AppConstants.VEHICLE_SERVICE_BULK_ENDPOINT,
-                                AppConstants.CREDENTIALS_ENDPOINT
+                                AppConstants.CREDENTIALS_ENDPOINT,
+                                AppConstants.BANK_ACCOUNT_ENDPOINT,
+                                AppConstants.FETCH_BANK_ACCOUNT_BY_USER_ENDPOINT,
+                                AppConstants.BULK_BANK_ACCOUNT_ENDPOINT,
+                                AppConstants.FETCH_ALL_BANK_ACCOUNTS
                         ).permitAll()
                         .anyExchange()
                         .authenticated()
