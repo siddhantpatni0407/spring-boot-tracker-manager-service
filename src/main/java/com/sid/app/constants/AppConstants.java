@@ -30,6 +30,10 @@ public class AppConstants {
     public static final String VEHICLE_ALL_FUEL_EXPENSE_ENDPOINT = "/api/v1/tracker-manager-service/vehicle/all-fuel-expense";
     public static final String STOCK_NIFTY_STOCK_DATA_ENDPOINT = "/api/v1/tracker-manager-service/stock/nifty-data";
     public static final String CREDENTIALS_ENDPOINT = "/api/v1/tracker-manager-service/credentials";
+    public static final String BANK_ACCOUNT_ENDPOINT = "/api/v1/tracker-manager-service/financial/bank-account";
+    public static final String BULK_BANK_ACCOUNT_ENDPOINT = "/api/v1/tracker-manager-service/financial/bulk-bank-account";
+    public static final String FETCH_ALL_BANK_ACCOUNTS = "/api/v1/tracker-manager-service/financial/bank-account/fetch";
+    public static final String FETCH_BANK_ACCOUNT_BY_USER_ENDPOINT = "/api/v1/tracker-manager-service/financial/user-bank-account";
 
     /**
      * Status Messages
