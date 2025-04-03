@@ -22,4 +22,7 @@
     <changeSet id="6" author="sid">
         <sqlFile path="db/scripts/add_bank_account_table.sql"/>
     </changeSet>
+    <changeSet id="7" author="sid">
+        <sqlFile path="db/scripts/add_bank_card_table.sql"/>
+    </changeSet>
 </databaseChangeLog>

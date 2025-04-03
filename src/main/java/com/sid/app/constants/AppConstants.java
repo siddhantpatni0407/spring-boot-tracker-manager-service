@@ -34,6 +34,10 @@ public class AppConstants {
     public static final String BULK_BANK_ACCOUNT_ENDPOINT = "/api/v1/tracker-manager-service/financial/bulk-bank-account";
     public static final String FETCH_ALL_BANK_ACCOUNTS = "/api/v1/tracker-manager-service/financial/bank-account/fetch";
     public static final String FETCH_BANK_ACCOUNT_BY_USER_ENDPOINT = "/api/v1/tracker-manager-service/financial/user-bank-account";
+    public static final String BANK_CARD_ENDPOINT = "/api/v1/tracker-manager-service/financial/bank-card";
+    public static final String BULK_BANK_CARD_ENDPOINT = "/api/v1/tracker-manager-service/financial/bulk-bank-card";
+    public static final String BANK_CARD_BY_BANK_ID_ENDPOINT = "/api/v1/tracker-manager-service/financial/bank-card/bank-id";
+    public static final String BANK_CARD_BY_BANK_CARD_ID_ENDPOINT = "/api/v1/tracker-manager-service/financial/bank-card/bank-card-id";
 
     /**
      * Status Messages
