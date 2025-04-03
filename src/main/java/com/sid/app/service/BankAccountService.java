@@ -128,7 +128,7 @@ public class BankAccountService {
 
     private BankAccount mapToEntity(BankAccountDTO dto) {
         return BankAccount.builder()
-                .accountId(dto.getAccountId())
+                .bankAccountId(dto.getAccountId())
                 .accountNumber(dto.getAccountNumber())
                 .accountHolderName(dto.getAccountHolderName())
                 .accountType(dto.getAccountType())
@@ -144,7 +144,7 @@ public class BankAccountService {
 
     private BankAccountDTO mapToDTO(BankAccount entity) {
         return BankAccountDTO.builder()
-                .accountId(entity.getAccountId())
+                .accountId(entity.getBankAccountId())
                 .userId(entity.getUser().getUserId())
                 .accountNumber(entity.getAccountNumber())
                 .accountHolderName(entity.getAccountHolderName())

@@ -47,8 +47,13 @@ public class SecurityConfig {
                                 AppConstants.BANK_ACCOUNT_ENDPOINT,
                                 AppConstants.FETCH_BANK_ACCOUNT_BY_USER_ENDPOINT,
                                 AppConstants.BULK_BANK_ACCOUNT_ENDPOINT,
-                                AppConstants.FETCH_ALL_BANK_ACCOUNTS
-                        ).permitAll()
+                                AppConstants.FETCH_ALL_BANK_ACCOUNTS,
+                                AppConstants.BANK_CARD_ENDPOINT,
+                                AppConstants.BULK_BANK_CARD_ENDPOINT,
+                                AppConstants.BANK_CARD_BY_BANK_ID_ENDPOINT,
+                                AppConstants.BANK_CARD_BY_BANK_CARD_ID_ENDPOINT
+                        )
+                        .permitAll()
                         .anyExchange()
                         .authenticated()
                 )
@@ -64,7 +69,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:4200")); // ✅ Match frontend URL
-        corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Access-Control-Allow-Origin"));
         corsConfig.setExposedHeaders(Arrays.asList("Authorization", "Content-Type"));
         corsConfig.setAllowCredentials(true);

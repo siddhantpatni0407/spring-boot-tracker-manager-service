@@ -1,6 +1,6 @@
 -- Create Table: bank_account
 CREATE TABLE IF NOT EXISTS bank_account (
-    account_id BIGSERIAL PRIMARY KEY,
+    bank_account_id BIGSERIAL PRIMARY KEY,
     user_id BIGINT NOT NULL,  -- Foreign key for user_id
     account_number VARCHAR(255) UNIQUE NOT NULL,
     account_holder_name VARCHAR(255) NOT NULL,

@@ -41,8 +41,8 @@ public class BankAccount extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "account_id", nullable = false)
-    private Long accountId;
+    @Column(name = "bank_account_id", nullable = false)
+    private Long bankAccountId;
 
     @Column(name = "account_number", nullable = false, unique = true)
     private String accountNumber;
