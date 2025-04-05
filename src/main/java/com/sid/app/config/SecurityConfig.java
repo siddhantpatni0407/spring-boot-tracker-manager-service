@@ -24,6 +24,7 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeExchange(auth -> auth
                         .pathMatchers(
+                                AppConstants.DB_BACKUP_ENDPOINT,
                                 AppConstants.USER_REGISTER_ENDPOINT,
                                 AppConstants.USER_LOGIN_ENDPOINT,
                                 AppConstants.LOGIN_REQUEST_OTP_ENDPOINT,

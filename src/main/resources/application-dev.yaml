@@ -76,6 +76,12 @@ encryption:
     algorithm: AES
     secret-key: Xf9aLp3qzT7vN2sYgW5KbVc6Rm8QJ0dP
 
+app:
+  backup:
+    directory: C:\Backup\Database\tracker_manager_db  # Change this to your desired backup location
+    prefix: db_backup
+    default-db: tracker_manager_db
+
 server:
   port: 8069  # Server port, configurable via environment variable
 
