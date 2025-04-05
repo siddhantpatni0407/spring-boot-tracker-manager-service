@@ -10,6 +10,7 @@ public class AppConstants {
     /**
      * API Endpoints
      */
+    public static final String DB_BACKUP_ENDPOINT = "/api/v1/tracker-manager-service/db-backup";
     public static final String USER_REGISTER_ENDPOINT = "/api/v1/tracker-manager-service/user/register";
     public static final String USER_LOGIN_ENDPOINT = "/api/v1/tracker-manager-service/user/login";
     public static final String LOGIN_REQUEST_OTP_ENDPOINT = "/api/v1/tracker-manager-service/user/otp-login";
