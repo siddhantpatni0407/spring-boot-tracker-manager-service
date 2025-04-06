@@ -24,6 +24,10 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeExchange(auth -> auth
                         .pathMatchers(
+                                "/swagger-ui.html",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/webjars/**",
                                 AppConstants.DB_BACKUP_ENDPOINT,
                                 AppConstants.USER_REGISTER_ENDPOINT,
                                 AppConstants.USER_LOGIN_ENDPOINT,
