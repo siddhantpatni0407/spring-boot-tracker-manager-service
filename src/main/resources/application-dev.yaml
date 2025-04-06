@@ -82,6 +82,12 @@ app:
     prefix: db_backup
     default-db: tracker_manager_db
 
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
 server:
   port: 8069  # Server port, configurable via environment variable
 
